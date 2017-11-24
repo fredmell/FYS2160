@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{physics}
+\usepackage[top=0.4in, bottom=0.4in, left=0.4in, right=0.4in]{geometry}
+
+\thispagestyle{empty}
+
+\begin{document}
+\section{Energi i termofysikk}
+\subsection{Ideell gass}
+For lav-tetthets gasser gjelder
+\begin{align*}
+  PV = NkT = nRT
+\end{align*}
+\subsection{Ekvipartisjon av energi}
+Gjelder for alle energiformer der formelen er en kvadratisk funksjon av koordinat-
+eller hastighetskomponent. Dersom det i et system er $N$ molekyler med $f$
+frihetsgrader hver, ingen ikke-kvadratiske temperaturavhengige former for energi
+er den midlere (totale for store $N$) termiske energien gitt ved
+\begin{align*}
+  U_\text{termisk} = N f \frac{1}{2}kT
+\end{align*}
+Tar ikke hensyn til for eksempel hvileenergi, så tryggest å bruke for endringer
+i energi med endringer i temperatur, og unngå tilfeller med faseoverganger
+eller andre reaksjoner der kjemiske bindinger frigjør/krever energi.
+
+\subsubsection{Telling av frihetsgrader}
+Telling av frihetsgrader. Monoatomisk gass: Kun translasjonell bevegelse i tre
+dimensjoner gir frihetsgrader, så $f = 3$. Diatomisk gass: Translasjonell
+bevegelse i 3D + rotasjon om to akser (aksen gjennom lengden av molekylet
+teller ikke pga. kvantemekanikk), så $f = 5$. Polyatomiske molekyler kan som
+regel roteres om tre akser, som gir det siste rotasjonsbidraget. Vibrasjon
+gir både kinetisk og potensiell energi bidrag, altså øker frihetsgraden med to.
+Ved romtemperatur bidrar ikke vibrasjon til termisk energi, ved høyere temperaturer
+kommer dette bidraget inn.
+
+I et fast stoff kan atomer vibrere i tre ortogonale retninger, som gir 6 frihetsgrader.
+Noen av disse kan "fryses ut" ved romtemperatur. Væsker er som regel mer kompliserte,
+ekvipartisjonsteoremet gjelder for translasjonell bevegelse, men ikke for andre
+bidrag siden de er ikke-kvadratiske.
+
+\subsection{Varme og arbeid}
+Overføringer av energi klassifiseres på to måter: \newline \noindent
+\textbf{Varme}: overføring av energi fra et objekt til et annet på grunn av innbyrdes forskjell i temperatur. Ledning (molekylær
+kontakt), konveksjon (bevegelse av områder av gass/væske) og elektromagnetisk stråling.\newline \noindent
+\textbf{Arbeid} er enhver annen overføring av energi inn eller ut av et system.
+\newline \noindent
+Endringen i energi for et system er summen av varme og arbeid (termodynamikkens første lov)
+\begin{align*}
+  \Delta{U} = Q + W
+\end{align*}
+\subsection{Kompresjonsarbeid}
+Arbeid som behøves for å redusere et volum av gass (trykk $P$) $\Delta V$ ved
+\textbf{kvasistatisk} kompresjon (gassen rekker hele tiden å justere til likevekt).
+\begin{align*}
+  W = -P \Delta{V} \quad (\text{ved } P \neq P(V))\qquad W = - \int_{V_i}^{V_f} P(V) \dd V \quad (\text{ved } P = P(V))
+\end{align*}
+To idealiserte kompresjonstyper for ideell gass: \textbf{isotermal kompresjon}
+(så sakte at temperatur i gassen er uendret) og \textbf{adiabatisk kompresjon}
+(så kjapp at ingen varme slipper ut av systemet i prosessen). \newline \noindent
+\textbf{Isotermal kompresjon}: Kvasistatisk, så
+\begin{align*}
+  W = -\int_{V_i}^{V_f} P \dd V = -NkT \int_{V_i}^{V_f} \frac{1}{V} \dd V = NkT \ln{\frac{V_i}{V_f}}
+\end{align*}
+Samme energi slipper ut ved varme (vises med første lov).\newline \noindent
+\textbf{Adiabatisk kompresjon}: Ingen varme unnslipper, $\Delta U = Q + W = W$.
+Bruk ekvipartisjon $\dd U = \frac{f}{2} N k \dd T$ og kvasistatisk kompresjon,
+bruk ideell gass lov for trykket og løs separabel difflign. Får (med $\gamma = f(f+2)$)
+\begin{align*}
+  V T^{f/2} = \text{constant} \overset{\text{Ideell gass lov}}{\implies} V^\gamma P = \text{constant}
+\end{align*}
+\subsection{Varmekapasiteter}
+Varmekapasitet defineres som $C = Q/\Delta{T}$ (varme per grad temperaturøkning). Tvetydig,
+avhenger av omstendigheter (mengde stoff/gass, arbeid osv.). Derfor har man
+varmekapasitet med $W = 0$ (som regel er $V$ da konstant, ingen kompressjon):
+\begin{align*}
+  C_V = \left( \frac{\Delta U}{\Delta T} \right)_V = \left( \pdv{U}{T}\right)_V
+\end{align*}
+Ofte ekspanderer gasser når de varmes opp, da tapes energi ved arbeid på omgivelsene.
+Dersom det er konstant trykk i omgivelsene er
+\begin{align*}
+  C_P = \left( \frac{\Delta U - (-P\Delta V)}{\Delta T} \right)_P =  \left( \pdv{U}{T}\right)_P + P\left( \pdv{V}{T}\right)_P
+\end{align*} \newline \noindent
+\textbf{Latent varme:} Ved faseoverganger øker ikke temperaturen ved tilførsel av energi. Da
+er varmekapasiteten per def uendelig: $C = Q/\Delta{T} = Q/0 = \infty$. Energien som kreves
+for å fullføre faseoverangen kalles den latente varmen $L = Q/m$, og er varmen per
+masse som kreves.\newline \noindent
+\textbf{Entalpi:} Entalpi er energien til et system + ekspansjonsarbeidet som
+krevdes for å putte det i det systemet det er i: $H = U + PV$. Observer at
+$C_P = \left( \pdv{H}{T} \right)_P$.
+\subsection{Prosesshastigheter (rates of processes)}
+Orker ikke dette nå.
+\section{Termodynamikkens andre lov}
+
+\section{Interaksjoner og implikasjoner}
+
+\section{Motorer og kjølemaskiner}
+
+\section{Fri energi og kjemisk termodynamikk}
+
+\section{Boltzmann statistikk}
+
+\section{Kvantestatistikk}
+
+\section{Konstanter og annet nyttig}
+\end{document}
