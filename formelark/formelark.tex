@@ -5,12 +5,10 @@
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{mathtools}
 \usepackage{enumerate}
 \usepackage{physics}
-\usepackage[top=0.4in, bottom=0.4in, left=0.4in, right=0.4in]{geometry}
 
-\thispagestyle{empty}
+\usepackage[top=0.4in, bottom=0.4in, left=0.4in, right=0.4in]{geometry} % Reduce margins
 
 \begin{document}
 \section{Energi i termofysikk}
@@ -98,9 +96,141 @@ $C_P = \left( \pdv{H}{T} \right)_P$.
 \subsection{Prosesshastigheter (rates of processes)}
 Orker ikke dette nå.
 \section{Termodynamikkens andre lov}
-
+\subsection{To tilstands systemer - paramagnetisme}
+\textbf{Mikrotilstand} er alle partiklenes tilstander, \textbf{makrotilstand} sier
+noe mer generelt om systemet. Multiplisiteten $\Omega(s)$ til en makrotilstand $s$ er antallet mikrotilstander
+tilhørende makrotilstanden. Sannsynligheten for en makrotilstand er $\Omega(s)/\Omega(\text{alle})$. I en
+to-tilstands paramagnet kan spinnene peke opp eller ned, $N = N_\uparrow + N_\downarrow$ er det totale antallet
+spinn.
+\begin{align*}
+  \Omega(N_\uparrow) = \binom{N}{N_\uparrow} = \frac{N!}{N_\uparrow! (N - N_\uparrow)!} = \frac{N!}{N_\uparrow N_\downarrow}
+\end{align*}
+\subsection{Einsteinmodellen for faste stoffer}
+System med et vilkårlig antall energi "enheter", alle med samme størrelse. Dette
+er tilfellet for harmonisk oscillator, med steg $hf$ (Referansenivå settes til 0).
+Disse oscillatorene gjelder for atomene i faste stoffer, 3 oscillatorer per atom
+pga frihetsgrader. Multiplisiteten til Einstein solid med $N$ oscillatorer og
+$q$ energi enheter er
+\begin{align*}
+  \Omega(N,q) = \binom{q + N - 1}{q} = \frac{(q + N - 1)!}{q!(N-1)!}
+\end{align*}
+\subsection{Interagerende systemer}
+Har nå to Einstein solids, $A$ og $B$, som kan dele energi. Systemene uavhengige
+av hverandre, så for en gitt energifordeling er multiplisiteten $\Omega_\text{tot} = \Omega_A \Omega_B$.\newline \noindent
+\textbf{Fundamental antagelse i statistisk mekanikk:} I et isolert system i termisk
+likevekt er enhver tilgjengelig mikrotilstand like sannsynlig. Merk at denne antagelsen
+forutsetter at tidsskalaen er mye større enn tiden energiforskyvninger skjer. \newline \noindent
+Observerer at multiplisiteten er langt høyere for de jevnere fordelingene av energi,
+så med antagelsen over må en måling av jevn fordeling være overveldende sannsynlig.
+\textbf{Termodynamikkens andre lov}(versjon 1): Multiplisiteten øker når et system
+er for seg selv, fordi det er overveldende sannsynlig.
+\subsection{Store systemer}
+\subsubsection{Veldig store tall}
+\textbf{Små tall:} 2,6,98. \textbf{Store tall:} Eksponentiering av små tall, f.eks
+Avogadros tall $\sim 10^{23}$. Regneregel: $10^{23} + 23 = 10^{23}$.
+\textbf{Veldig store tall:} Eksponentiering av store tall, f.eks $10^{10^{23}}$.
+Regneregel: $10^{10^{23}} \times 10^{23} = 10^{(10^{23} + 23)} = 10^{10^{23}}$.
+Logartime gjør et veldig stort tall til et stort tall osv, dette brukes mye.
+\subsubsection{Stirlings Approksimasjon}
+\begin{align*}
+  N! \approx N^N e^{-N}\sqrt{2\pi N}
+\end{align*}
+Korrekt i grensen $N \gg 1$. God approksimasjon for logaritmen er gitt som $\ln{N!} \approx N \ln N - N$.
+\subsubsection{Multiplisiteten til et stort Einstein solid}
+Bruk Stirling på multiplisiteten til Einstein solid, med en rekkeutvikling av en
+logaritme underveis. I grensen $q \gg N$ fåes
+$\Omega(N,q) \approx \left(\frac{eq}{N}\right)^N$
+\subsubsection{Skarpheten til multiplisitetsfunksjonen}
+For to interagerende Einstein solids med $q \gg N$ er $\Omega = \left(\frac{e}{N}\right)^{2N} (q_A q_B)^{2N}.$
+Har en skarp topp ved $\Omega = (e/N)^{2N} (q/2)^{2N}$, altså $q_A = q_B = q/2$,
+en lik fordeling av energi. Fordelingen er Gaussisk og bredden er gitt ved $q/\sqrt{N}$.
+For store $N$ vil fluktuasjoner være umulige å måle, denne grensen kalles den \textbf{termodynamiske grensen}.
+\subsection{Ideell gass}
+Utledning viser at $\Omega(U,V,N) \approx f(N) V^N U^{3N/2}$, der $f(N) = \frac{1}{N!} \frac{1}{h^{3N}} \frac{\pi^{3N/2}}{(3N/2)!} (2m)^{3N/2}$.
+Kombineres to av disse (kun energiutveksling) fåes $\Omega_\text{total} = [f(N)]^2 (V_A V_B)^2 (U_A U_B)^{3N/2}$,
+samme type uttrykk som for Einstein solid. Smal peak med høye multiplisiteter.
+\subsection{Entropi}
+Definerer entropi som (fordi multiplisitet er et veldig stort tall, og store tall er enklere å jobbe med)
+\begin{align*}
+  S = k \ln{\Omega}
+\end{align*}
+Dimensjon energi per temperatur, enhet $J/K$. En nyttig egenskap: $S_\text{tot} = k \ln{\Omega_\text{tot}} = k \ln{(\Omega_A \Omega_B)} = S_A + S_B$. \newline \noindent
+\textbf{Termodynamikkens andre lov:} Ethvert stort system i likevekt vil være i
+makrotilstanden med størst entropi (utenom fluktuasjoner som vanligvis er for små
+til å måle). Altså: Entropi har en tensens til å øke.
+\\ \\
+Entropi kan ikke reduseres, enhver reduksjon i entropi i et system har skapt
+mer entropi utenfor systemet.
+\subsubsection{Entropi for en ideell gass}
+\subsubsection{Blandingsentropi}
 \section{Interaksjoner og implikasjoner}
-
+\subsection{Temperature}
+Se på system med to Einstein solids med noen hundre oscillatorer hver som deler
+100 enheter energi. Plott entropi (individuelle og total) mot energi. Observer at
+ved likevekt er $\pdv{S_A}{U_A} + \pdv{S_B}{U_A} = 0 \implies \pdv{S_A}{U_A} = \pdv{S_B}{U_B}$.
+Dvs. det som er likt for begge systemer når de er i likevekt er stigningstallet til
+entropi mot energigrafene, som da må ha noe med temperatur å gjøre (siden det er slik
+temperatur er definert). Observer videre at det systemet med lav energi (da har det andre høy energi)
+har en brattere $S$ mot $U$ graf, så en økning i energi skaper mer entropi enn det
+høy energi systemet mister, så denne prosessen skjer av seg selv ifølge den andre loven.
+Høyt stigningstall korresponderer med lav temperatur, og lavt med høy temperatur. Dette gir:
+\begin{align*}
+  \frac{1}{T} = \left(\pdv{S}{U} \right)_{N,V}
+\end{align*}
+\subsection{Entropi og varme}
+\subsubsection{Finne termodynamiske størrelser for et system}
+\begin{enumerate}
+  \itemsep0em
+  \item Bruk kvantemekanikk og/eller kombinatorikk til å finne et uttrykk for
+  multiplisiteten som funksjon av $U,V,N$ og/eller andre variable. Må ofte bruke
+  Stirlings approksimasjon og se på grenser.
+  \item Ta logaritmen for å finne entropien.
+  \item Deriver entropi mhp. energi for å finne temperatur som funksjon av $U$
+  og evt. andre variable.
+  \item Deriver $U(T)$ med hensyn på $T$ for å finne varmekapasiteten (med andre
+  variable holdt konstant). Gjør andre operasjoner for å finne andre variable.
+\end{enumerate}
+\subsubsection{Måle entropier}
+\subsubsection{Makroskopisk syn på entropi}
+\subsection{Paramagnetisme}
+$N$ spin 1/2 dipoler. $N_\uparrow: q = -\mu B$ og $N_\downarrow: q = \mu B$.
+Total energi $U = N_\uparrow(-\mu B) + N_\downarrow \mu B = \mu B(N_\downarrow - N_\uparrow) = \mu B(N - 2N_\uparrow)$.
+Magnetisering $M = \mu(N_\uparrow - N_\downarrow) = \frac{-U}{B}$. Brukes Stirling
+på multiplisitetsfunksjonen og stegene over fåes $U = -N\mu B\tanh{\left(\frac{\mu B}{kT} \right)}$.
+\subsection{Mekanisk likevekt og trykk}
+Hva med når systemer $A$ og $B$ kan utveksle både energi og volum? Utveksling av
+energi skjer på grunn av temperaturer, utveksling av volum styres av trykk.
+Ved likevekt er $\pdv{S}{V_A} = 0$ (også ingen endring med hensyn på energi). Trykket
+må være likt i begge sider ved likevekt, og ved stor endring i entropi per endring i
+volum vil trykket være stort, gassen ønsker å ekspandere. Relasjonen blir
+\begin{align*}
+  P = T \left( \pdv{S}{V} \right)_{U,N}
+\end{align*}
+\subsubsection{Den termodynamiske identiteten}
+Anta det skjer en prosess på et system der energien og volumet endres med $\Delta U$
+og $\Delta V$ (volum konstant under energiendring, energi konstant under volumendring).
+Prosessen kan deles opp i to steg, og endringen i entropi er gitt ved summen av
+endringene fra de to prosessene. Så ved identitetene over er
+\begin{align*}
+  \dd S = \left( \pdv{S}{U} \right)_{V} \dd U + \left( \pdv{S}{V} \right)_{U}\dd V
+\end{align*}
+Dette kalles \textbf{den termodynamiske identiteten}, og skrives ofte om til (merk
+at disse ligningene forutsetter at andre variable, som $N$, holdes konstant)
+\begin{align*}
+  \dd U = T \dd S - P \dd V
+\end{align*}
+\subsubsection{Entropi og varme igjen}
+Uttrykket over ligner veldig på $\dd U = Q + W$ (termodynamikkens første lov).
+Sammenligningen gjelder så lenge volumendringer skjer kvasistatisk og andre
+størrelser er konstante (f.eks $N$). Da er $W = -P \dd V$, så $Q = T \dd S$,
+selv om det gjøres arbeid på systemet. I tilfellet der endringen er adiabatisk $Q = 0$
+og kvasistatisk er entropien uendret. Dette kalles en \textbf{isentropisk} prosess.
+\subsection{Diffusiv likevekt og kjemisk potensial}
+To systemer i termisk likevekt har like temperaturer. Mekanisk likevekt tilsvarer
+like trykk. Hva med diffusiv likevekt? Betrakt to systemer som kan utveksle
+partikler og energi, men er under konstant volum. Antar samme "art", f.eks $\text{H}_2\text{O}$,
+men tilstandsformer er vilkålig. Antar total energi og antall partikler er konstant,
+så ved likevekt er $\left( \pdv{S}{U_A} \right)_{N_A, V_A} = 0$ og $\left( \pdv{S}{N_A} \right)_{U_A, V_A} = 0$.
 \section{Motorer og kjølemaskiner}
 
 \section{Fri energi og kjemisk termodynamikk}
@@ -110,4 +240,12 @@ Orker ikke dette nå.
 \section{Kvantestatistikk}
 
 \section{Konstanter og annet nyttig}
+\subsection{Fysiske konstanter}
+\begin{align*}
+  k   &= 1.381 \times 10^{-23} \text{ J/K} = 6.617 \times 10^{-5} \text{ eV/K} \\
+  N_A &= 6.022 \times 10^{23}        \\
+  R   &= 8.315 \text{ J/mol$\cdot$K} \\
+  h   &= 6.626 \times 10^{-34} \text{ J}\cdot\text{s} = 4.136 \times 10^{-15} \text{ eV}\cdot\text{s}\\
+\end{align*}
+\subsection{Konvertering mellom enheter}
 \end{document}
