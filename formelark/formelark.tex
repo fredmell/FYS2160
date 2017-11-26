@@ -1,12 +1,16 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{enumerate}
 \usepackage{physics}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{float}
 
 \usepackage[top=0.4in, bottom=0.4in, left=0.4in, right=0.4in]{geometry} % Reduce margins
 
@@ -231,10 +235,126 @@ like trykk. Hva med diffusiv likevekt? Betrakt to systemer som kan utveksle
 partikler og energi, men er under konstant volum. Antar samme "art", f.eks $\text{H}_2\text{O}$,
 men tilstandsformer er vilkålig. Antar total energi og antall partikler er konstant,
 så ved likevekt er $\left( \pdv{S}{U_A} \right)_{N_A, V_A} = 0$ og $\left( \pdv{S}{N_A} \right)_{U_A, V_A} = 0$.
+Ved likevekt er $\pdv{S}{N_A} = \pdv{S}{N_B}$ ved konstant energi og volum. Ganger opp
+med temperatur og definerer det kjemiske potensialet
+\begin{align*}
+  \mu \equiv - T \left(\pdv{S}{N} \right)_{U,V}
+\end{align*}
+Systemer overlatt til seg selv vil dermed gå mot lavere kjemiske potensial, siden
+dette gir høyere entropi. Altså strømmer partikler fra systemer med høyere $\mu$
+til lavere.
+
+Vi kan nå utvide den termodynamiske identiteten ytterligere. Total endring i entropi
+ved å endre $U$ med $\dd U$, $P$ med $\dd P$ og $N$ med $\dd N$ er
+\begin{align*}
+  \dd S &= \left( \pdv{S}{U} \right)_{N, V} \dd U + \left( \pdv{S}{V} \right)_{N, U} \dd V + \left( \pdv{S}{N} \right)_{U, V} \dd N\\
+        &= \frac{1}{T} \dd U + \frac{P}{T} \dd V + \mu \dd N
+\end{align*}
+Eller, løst for $\dd U$ fåes
+\begin{align*}
+  \dd U = T \dd S - P \dd V + \mu \dd N
+\end{align*}
+De to siste leddene kalles vanligvis henholdsvis mekanisk og kjemisk arbeid, det
+første leddet er som tidligere varme. Dersom det er flere typer partikler/atomer
+har de hvert sitt kjemiske potensial, da erstattes det siste leddet av en sum
+av $\mu_i \dd N_i$ ledd.
 \section{Motorer og kjølemaskiner}
+\subsection{Varmekraftmaskiner}
+En \textbf{varmekraftmaskin} er et apparat som absorberer varme og omdanner
+deler av energien til arbeid. Et eksempel er dampturbinen. Grunnen til at kun
+deler av energien kan omdannes er at når varme strømmer inn kommer det også
+entropi, og denne må en kvitte seg med før prosessen kan starte om.
+\begin{wrapfigure}{R}{0.4\textwidth}
+  \includegraphics[width=0.3\textwidth]{figures/carnot.png}
+\end{wrapfigure}
+Varme kommer fra det \textbf{varme reservoiret} $T_H$ og varmen som dumpes dumpes til
+det \textbf{kalde reservoiret} $T_C$. Arbeidet motoren gjør er $W$. Alle størrelsene er positive.
+Effektivitet defineres som arbeid ut per varme inn
+\begin{align*}
+  e \equiv \frac{W}{Q_h}
+\end{align*}
+Hvordan maksimere effektiviteten? Energibevaring gir $Q_h = Q_c + W$, som gir
+effektiviteten $e = \frac{Q_h - Q_c}{Q_h} = 1 - Q_c/Q_h$.
 
+Videre, entropien i systemet kan ikke bli mindre, så $Q_c / T_c \geq Q_h / T_h$.
+Settes dette inn i effektivitetsuttrykket over får man $e \leq 1 - T_c / T_h$.
+Velg $T_c$ og $T_h$ slik at forholdet blir så lite som mulig. Den første loven
+sier 'du kan ikke vinne', og den andre loven sier at 'du går uansett i underskudd'.
+\subsubsection{Carnotsyklusen}
+
+\subsection{Kjølemaskiner}
+Kjølemaskiner er varmekraftmaskiner kjørt baklengs. Varme går fra det kalde
+reservoiret til det varme ved tilførsel av arbeid som elektrisk energi. Kjøleskapet
+er det kalde reservoiret og systemet utenfor det varme. 'Søppelvarme' dumpes ut
+i kjøkkenet. COP (coefficient of performance) defineres som
+\begin{align*}
+  \text{COP} = \frac{\text{benefit}}{\text{cost}} = \frac{Q_c}{W}
+\end{align*}
+Kan som over bruke første og andre lov til å vise begrensninger for COP.
 \section{Fri energi og kjemisk termodynamikk}
-
+\subsection{Fri energi som tilgjengelig arbeid}
+\textbf{Entalpi} er energien til et system pluss arbeided som behøves for å lage plass ved å dytte
+atomosfære/annet med trykk $P$ vekk. Altså energi som trengs hvis systemet
+skal dannes ut av intet og plasseres i et annet system:
+\begin{align*}
+  H \equiv U + PV
+\end{align*}
+\textbf{Helmoholtz fri energi} er energien som trengs for å lage et system, minus
+varmen man får 'gratis' fra omliggende atmosfære med temperatur $T$. Ekvivalent er
+dette energien som kan hentes ut dersom systemet annihileres, entropi kan ikke minke
+så entropi må dumpes ut som varme. $F$ er da energien man får ut som arbeid:
+\begin{align*}
+  F \equiv U - TS
+\end{align*}
+\textbf{Gibbs fri energi} er en kobinasjon av de over.
+\begin{align*}
+  G \equiv U - TS + PV
+\end{align*}
+Som regel betraktes ikke situasjoner der hele systemet annihileres, så det er
+bedre å se på endringer i størrelsene over. Da er $\Delta F = \Delta U - T \Delta S = Q + W - T \Delta S$.
+Dersom ingen entropi dannes er $Q = T\Delta S$, og $\Delta F = W$. Dersom entropi
+dannes er $T\Delta S > Q$, og $\Delta F < W$, så ved konstant temperatur er
+\begin{align*}
+  \Delta F \leq W
+\end{align*}
+Samme argumentasjon for konstant trykk og temperatur og at $W = -P\Delta V + W_\text{annet}$
+gir
+\begin{align*}
+  \Delta G \leq W_\text{annet}
+\end{align*}
+\subsubsection{Elektrolyse, brenselceller og batterier}
+Et eksempel på bruk av $\Delta G$, betrakt reaksjonen $\text{H}_2 \text{O} \rightarrow \text{H}_2 + \frac{1}{2}\text{O}_2$,
+elektrolyse av vann til hydrogen og oksygengass. Fra tabell er $\Delta H = 286$ kJ (energien man ville fått dersom man brant et mol hydrogen).
+I denne reaksjonen må denne energien altså tilføres, $P\Delta V = 4$ kJ av energien går til å dytte atmosfære vekk, resten blir værende i systemet.
+Hvor mye må tilføres ved arbeid og hvor mye ved varme? Fra tabeller er $S_{\text{H}_2 \text{O}} = 70 \text{ J/K}$, $S_{\text{H}_2} = 131 \text{ J/K}$
+og $S_{\text{O}_2} = 205 \text{ J/K}$. Endring i entropi er $\Delta S = S_1 - S_0 = (131 + 0.5 \cdot 205) - 70 = 163$ J/K, entropien øker. Maksimal
+energiendring ved varme er da $T\Delta S = 49$ kJ. Energien som behøves via elektrisk arbeid
+er forskjellen $286 - 49 = 237$ kJ. Dette er endringen i Gibbs fri energi, det minste arbeidet som behøves for
+å få reaksjonen til å gå: $\Delta G = 237 \text{ kJ} = \Delta H - T \Delta S = 286 \text{ kJ} - (298 \text{ K})(163 \text{ J/K})$.
+\subsubsection{Termodynamiske identiteter}
+Kan lage identiteter for de overnevnte energiene, betrakt små endringer i $H, U, P$ og $V$
+og bruk den termodynamiske identiteten til å eliminere $\dd U$. Gir
+\begin{align*}
+  \dd H &= T \dd S + V \dd P + \mu \dd N \\
+  \dd F &= -S \dd T - P \dd V + \mu \dd N \\
+  \dd G &= -S \dd T + V \dd P + \mu \dd N
+\end{align*}
+Fra disse kan en rekke partiellderiverte relasjoner finnes. For eksempel
+\begin{align*}
+  S = -\left( \pdv{G}{T} \right)_{P,N}
+\end{align*}
+kan lages ved å bruke den siste og holde $P$ og $N$ konstant, dvs $\dd P = \dd N = 0$.
+\subsection{Fri energi som kraft mot likevekt}
+\textbf{Reservoir} av energi: System stort nok til at det kan utveksle uendelig
+energi uten å endre sin temperatur. \newline \noindent
+Betrakt et system med
+\subsection{Faseoverganger}
+En \textbf{faseovergang} er en diskontinuerlig endring i egenskapene til et stoff
+når noe rundt bare endres infinitesimalt. Et \textbf{fasediagram} viser likevektsfaser
+kom funksjon av trykk og temperatur. Trykket der en gass kan sameksistere med flytende
+fase kalles \textbf{damptrykket}. Punktet (kombinasjonen av $P$ og $T$) der
+alle tre faser sameksisterer kalles \textbf{trippelpunktet}. Ved lavere temperaturer
+kan ikke væskeformen eksistere, fast stoff sublimerer til gass.
 \section{Boltzmann statistikk}
 
 \section{Kvantestatistikk}
