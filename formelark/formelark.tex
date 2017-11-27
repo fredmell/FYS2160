@@ -13,6 +13,8 @@
 \usepackage{float}
 
 \usepackage[top=0.4in, bottom=0.4in, left=0.4in, right=0.4in]{geometry} % Reduce margins
+\newcommand{\mean}[1]{\langle #1 \rangle}
+
 
 \begin{document}
 \section{Energi i termofysikk}
@@ -356,8 +358,158 @@ fase kalles \textbf{damptrykket}. Punktet (kombinasjonen av $P$ og $T$) der
 alle tre faser sameksisterer kalles \textbf{trippelpunktet}. Ved lavere temperaturer
 kan ikke væskeformen eksistere, fast stoff sublimerer til gass.
 \section{Boltzmann statistikk}
-
+\subsection{Boltzmann faktoren}
+\textbf{Degenerert:} Flere uavhengige tilstander som tilsvarer samme energinivå.
+Betrakt atom med energinivåer og i kontakt med reservoir. Hva er sannsynligheten
+for at atomet er i tilstanden $s_1$ eller $s_2$? Tilstandene har energier $E(s_1)$
+og $E(s_2)$ og sannsynligheter $P(s_1)$ og $P(s_2)$. Atomet og reservoiret er
+et lukket system, så alle tilgjengelige mikrotilstander like sannsynlige. Har tilsvarende
+multiplisiteten til reservoiret ved disse tilstandene: $\Omega_R(s_1)$ og $\Omega_R(s_2)$.
+Logikk tilsier at
+\begin{align*}
+  \frac{P(s_2)}{P(s_1)} = \frac{\Omega_R(s_2)}{\Omega_R(s_1)} = \frac{e^{S_R(s_2)/k}}{e^{S_R(s_1)/k}} = e^{[S_R(s_2) - S_R(s_1)]/k} = \frac{e^{-E(s_2)/kT}}{e^{-E(s_1)/kT}}
+\end{align*}
+Eksponenten  nest siste likhet er endring i entropi. Bruker termodynamisk identitet $\dd S_R = 1/T (\dd U_R + P \dd V_R - \mu \dd N_R)$,
+kaster bort de siste to leddene (entropiendring som følge av volumendring neglisjerbar i forhold til energitilstandsendring, og
+antallet partikler er konstant). Kan skrive om entropiendringene til energiendringer, får siste likhet over. Faktorene i siste
+uttrykk kalles Boltzmann faktorer, disse er sannsynligheter så lenge de normaliseres med en partisjonsfunksjon $Z$.
+\begin{align*}
+  P(s) = \frac{1}{Z} e^{-E(s)/kT}
+\end{align*}
+Observasjoner: Sannsynligheten går ned for høyere energis tilstander.
+\subsubsection{Partisjonsfunksjonen}
+Har ved loven om total sannsylighet (setter ofte $\beta = 1 / kT$)
+\begin{align*}
+  Z = \sum_s e^{-\beta E(s)}
+\end{align*}
+\subsection{Forventningsverdier (gjennomsnittsverdier)}
+\begin{align*}
+  \mean{X} = \sum_s X(s) P(s) = \sum_s X(s) e^{-\beta E(s)}
+\end{align*}
+Husk at forventningsverdier er additive, trenger bare å regne ut gjennomsnittlig
+energi til en partikkel og gange med antallet partikler for å finne total energi.
+\subsection{Ekvipartisjonsteoremet - Bevis}
+Anta kvadratiske frihetsgrader, dvs $E(q) = c q^2$ der $c$ er en konstant og $q$
+er en romlig eller momentum koordinat ($x$, $p_x$ og $L_x$ er eksempler). Anta
+tilstandene er $\approx$infinitesimalt diskretisert i deler $\Delta q$. Har
+$Z = \sum_q e^{-\beta E(q)} = \sum_q e^{-\beta c q^2} = \frac{1}{\Delta q}\sum_q e^{-\beta c q^2}\Delta q$.
+Approksimerer summen som et integral, bytte variabel til $x = \sqrt{\beta c q}$ med $\dd q = \dd x / \sqrt{\beta c}$.
+Får $Z = \frac{1}{\Delta q} \frac{1}{\sqrt{\beta c}} \int_{-\infty}^{\infty} e^{-x^2} \dd x = C \beta^{-1/2}$ der $C = \sqrt{\pi/c}/\Delta q$.
+Forventningsverdien til energi er da gitt som (dette blir ekvipartisjonsteoremet)
+\begin{align*}
+  \mean{E} = -\frac{1}{Z} \pdv{Z}{\beta} = \hdots = \frac{1}{2}kT
+\end{align*}
+Gjelder ikke for kvantemekaniske systemer siden antallet distinkte tilstander
+som har signifikante sannsynligheter blir for liten, og integralapproksimasjonen
+blir dårlig. Gjelder ikke for lave temperaturer, siden for få tilstander har
+store nok bidrag.
+\subsection{Maxwells hastighetsfordeling - utledning}
+Ønsker å finne sannsynlighetstetthet for molekylhastigheter i en ideell gass. Forventer at
+tettheten $D$ oppfyller følgende proporsjonalitet
+\begin{align*}
+  D(v) \propto (\text{Sannsynlighet for å ha hastighet } \vb v) \times (\text{Antall vektorer $\vb v$ som finnes for en hastighet $v$}) = 4\pi v^2 e^{-mv^2 / 2kT}
+\end{align*}
+Den første faktoren finnes enkelt ved at energien er $mv^2 / 2$, så proporsjonaliteten
+til sannsynligheten er gitt ved Boltzmannfaktoren $e^{-mv^2 / 2kT}$. Den andre
+finnes ved å betrakte arealet til sfæren av mulige momentum vektorer, som har areal
+$4\pi v^2$. Proporsjonalitetskonstanten er effektivt en normaliseringskonstant. Denne kan regnes ut til resultatfordelingen
+\begin{align*}
+  D(v) = \left( \frac{m}{2\pi k T} \right)^{3/2} 4\pi v^2 e^{-mv^2 /2kT}
+\end{align*}
+\subsection{Partisjonsfunksjoner og fri energi}
+\begin{align*}
+  F = -kT \ln{Z} \qquad Z = e^{-F/kT}
+\end{align*}
+Fra denne kan entropi, trykk og kjemisk potensial regnes ut:
+\begin{align*}
+  S = -\left( \pdv{F}{T} \right)_{V,N} \qquad P = -\left( \pdv{F}{V} \right)_{T,N} \qquad \mu = \left( \pdv{F}{N} \right)_{T,V}
+\end{align*}
+\subsection{Partisjonsfunksjoner for sammensatte? (composite) systems}
+Hvordan relateres $Z$ for et system til $Z$ for hver partikkel? Betrakter først system med
+to partikler. Hvis disse ikke interagerer med hverandre er den totale energien $E_1 + E_2$, og
+\begin{align*}
+  Z_\text{tot} = \sum_s e^{-\beta[E_1(s) + E_2(s)]} = \sum_s e^{-\beta E_1(s)} e^{-\beta E_2(s)}
+\end{align*}
+der summen er over alle tilstandene til det sammensatte systemet. Hvis, i tillegg,
+partiklene er adskillbare er tilstandene for det sammensatte systemet ekvivalent med
+settet med alle mulige par av tilstander
+\begin{align*}
+  Z_\text{total} = \sum_{s_1}\sum_{s_2} e^{-\beta E_1(s_1)} e^{-\beta E_2(s_2)} = \sum_{s_1} e^{-\beta E_1(s_1)} \sum_{s_2} e^{-\beta E_2(s_2)} = Z_1 Z_2 \\
+  \text{(Distinguishable, noninteracting particles)}
+\end{align*}
+Hvis partiklene er ikke-adskillbare er
+\begin{align*}
+  Z_\text{total} = \frac{1}{2}Z_1 Z_2\qquad \text{(Noninteracting, undistinguishable particles)}
+\end{align*}
+Denne er ikke helt korrekt ettersom det er noen ledd i dobbeltsummen over der begge
+partiklene er i samme tilstand, disse ble ikke telt dobbelt og burde ikke kuttes bort. I ideell
+gass og lignende systemer er sjansene for at to partikler er i samme tilstand neglisjerbare.
+Generelt, for $N$ partikler er
+\begin{align*}
+  Z_\text{total} = Z_1 Z_2 \hdots Z_N \qquad \text{($N$ noninteracting, distinguishable particles)} \\
+  Z_\text{total} = \frac{1}{N!} Z_1^N \qquad \text{($N$ noninteracting, indistinguishable particles)}
+\end{align*}
+\subsection{Ideel gass igjen}
 \section{Kvantestatistikk}
+\subsection{Gibbsfaktoren}
+Samme utledning som for Boltzmannfaktoren, men denne gangen kan systemet utveksle
+partikler med reservoiret, det er i diffusiv likevekt. Tar med $\mu \dd N$ leddet
+fra termodynamisk identitet, endring for reservoiret er lik endring for systemet, får
+faktorer på formen
+\begin{align*}
+  P(s) = \frac{1}{\mathcal{Z}} e^{-[E(s) - \mu N(s)]/kT} \qquad \text{der } \mathcal{Z} = \sum_s e^{-[E(s) - \mu N(s)]/kT}
+\end{align*}
+kalles \textbf{Gibbs summen} og summen går over alle mulige tilstander (inkludert alle mulige verdier for $N$).
+Dersom det er flere typer partikler blir $\mu \dd N$ leddet en sum over $\mu_i \dd N_i$, og Gibbs faktoren blir
+$e^{-[E(s) - \mu_A N_A(s) - \mu_B N_B(s)]/kT}$ for et tilfelle med to typer partikler.
+\subsubsection{Eksempel: Karbonmonoksidforgiftning}
+\subsection{Bosoner og Fermioner}
+Gibbsfaktorer sin viktigste anvendelse er i \textbf{kvantestatistikk}. Da er det ofte
+så få mulige tilstander eller så høy tetthet at det er en betydelig sannsynlighet
+for at identiske partikler ønsker å ta opp samme en-partikkels tilstand. Partisjonsfunksjonen
+for system med $N$ ikke-skillbare, ikke-interagerende partikler $Z = Z_1^N / N!$ i forrige
+kapittel gjelder kun når ingen partikler er i samme tilstand.
+
+Noen partikler kan oppta samme tilstand. Patikler som kan dele samme tilstand
+med hverandre kalles \textbf{bosoner} (for eksempel fotoner, pioner, helium-4 atomer).
+Mange partikler kan ikke dele samme tilstand, disse kalles \textbf{fermioner}, og
+eksempler er elektroner, protoner, osv. Regelen som sier dette kalles \textbf{Paulis eksklusjonsprinsipp}.
+Partikler med heltalls spinn er bosoner, halvtallige spinn er fermioner.
+
+I mange tilfeller er det irrelevant om partiklene er bosoner eller fermioner. Dette gjelder
+når antallet tilgjengelige tilstander er langt større enn antallet partikler $Z_1 \gg N$.
+Med uttrykket for enpartikkels partisjonsfunksjon for ideell gass blir kravet $V/N \gg v_Q$
+der $V$ er volumet til gassen, $N$ er antallet partikler og $v_Q$ er kvantevolumet (omtrent
+den gjennomsnittlige de Broglie bølgelengden i tredje potens). Altså må gjennomsnittlig
+avstand mellom partiklene være mye større enn den gjennomsnittlige de Broglie bølgelengden.
+Når avstandene blir for små og kravet ikke holder vil bølgefunksjonene begynne å overlappe,
+og oppførselen blir helt annerledes enn for en ideell gass. Veldig høy tetthet eller
+lave temperaturer gjør at dette skjer.
+\subsubsection{Distribusjonsfunksjoner}
+Betrakter en-partikkel tilstanden til et system som har energi $\epsilon$ når
+en partikkel tar den opp og energi $0$ når den ikke er tatt opp. Sannsynligheten
+for at den er tatt opp av $n$ partikler er
+\begin{align*}
+  P(n) = \frac{1}{\mathcal{Z}} e^{-(n\epsilon - \mu n)/kT} = \frac{1}{\mathcal{Z}} e^{-n(\epsilon - \mu)/kT}
+\end{align*}
+Gibbs summen er enkel dersom partiklene er fermioner, $\mathcal{Z} = 1 + e^{-(\epsilon - \mu)/kT}$.
+Forventningsverdien til antallet tilstander tatt opp (kalles \textbf{okkupans}) er
+\begin{align*}
+  \mean{n} = \sum_n n P(n) = \frac{e^{-n(\epsilon - \mu)/kT}}{1 + e^{-(\epsilon - \mu)/kT}} = \frac{1}{e^{(\epsilon - \mu)/kT} + 1}
+\end{align*}
+Dette kalles \textbf{Fermi-Dirac fordelingen}.
+
+Dersom partiklene er bosoner kan $n$ være ethvert ikke-negaivt heltall, så Gibbs summen er
+\begin{align*}
+  \mathcal{Z} = 1 + e^{-(\epsilon - \mu)/kT} + e^{-2(\epsilon - \mu)/kT} + \hdots = 1 + e^{-(\epsilon - \mu)/kT} + (e^{-(\epsilon - \mu)/kT})^2 + \hdots = \frac{1}{1-e^{-(\epsilon - \mu)/kT}}
+\end{align*}
+Gjennomsnittlig antall partikler i tilstanden er (sett $x = (\epsilon - \mu)/kT$)
+\begin{align*}
+  \mean{n} = \sum_n n P(n) = \sum_n n \frac{e^{-nx}}{\mathcal{Z}} = - \frac{1}{\mathcal{Z}} \sum_n \pdv{x} e^{-nx} = \frac{1}{\mathcal{Z}} \pdv{\mathcal{Z}}{x} = \frac{1}{e^{(\epsilon - \mu)/kT} - 1}
+\end{align*}
+Dette kalles \textbf{Bose-Einstein fordelingen}. Begge disse fordelingene reduserer til Boltzmannfordelingen
+i grensen der $\epsilon \gg \mu$.
+\subsection{Degenererte Fermi gasser}
 
 \section{Konstanter og annet nyttig}
 \subsection{Fysiske konstanter}
@@ -368,4 +520,9 @@ kan ikke væskeformen eksistere, fast stoff sublimerer til gass.
   h   &= 6.626 \times 10^{-34} \text{ J}\cdot\text{s} = 4.136 \times 10^{-15} \text{ eV}\cdot\text{s}\\
 \end{align*}
 \subsection{Konvertering mellom enheter}
+
+\subsection{Viktigste formler}
+\begin{align*}
+  \mean{E} = - \frac{1}{Z} \pdv{Z}{\beta}
+\end{align*}
 \end{document}
