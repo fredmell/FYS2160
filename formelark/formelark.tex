@@ -100,7 +100,33 @@ masse som kreves.\newline \noindent
 krevdes for å putte det i det systemet det er i: $H = U + PV$. Observer at
 $C_P = \left( \pdv{H}{T} \right)_P$.
 \subsection{Prosesshastigheter (rates of processes)}
-Orker ikke dette nå.
+Vanligvis behøves ikke tiden det tar et system å nå likevekt å betraktes for å
+finne likevektstiden. Dette nevnes allikevel kort her.
+\subsubsection{Varmeledning}
+Avhenger av en rekke faktorer, hvilke mekanismer er tilgjengelige. Hvis tomt
+rom skiller objekter kan kun stråling lede varme. I et fluid er konveksjon
+som regel dominant. Konveksjonstid funksjon av varmekapasitet og en rekke
+faktorer som krefter, ganske komplisert. Den tredje måten er ved direkte
+ledning, molekylær kontakt. Skjer i fast stoff og fluid former. I tilfellet
+med to stoff med temperaturer $T_1$ og $T_2$ adskilt av f.eks glass med
+tykkelse $\Delta x$, areal $A$ og som leder en varme $Q$ i løpet av en tid $\Delta t$.
+\textbf{Fouriers varmeledningslov} sier at
+\begin{align*}
+  \frac{Q}{\Delta t} = - k_t A \frac{\dd T}{\dd x}
+\end{align*}
+der $k_t$ kalles \textbf{termisk konduktivitet} og er avhengig av materialet
+varmen ledes gjennom, f.eks glass.
+\subsubsection{Konduktiviteten til en ideell gass}
+\subsubsection{Viskositet}
+Momentum kan også spre seg gjennom et fluid. Situasjon med to parallele plater
+med fluid imellom (dynamisk viskositet $\eta$ eller $\mu$). Platene beveger seg med ulike hastigheter.
+Ved dimensjonsanalyse/logisk tenkning (evt. Navier-Stokes) er den viskøse motstandskraften
+gitt ved
+\begin{align*}
+  \frac{|F_x|}{A} = \mu \frac{\dd u_x}{\dd z}
+\end{align*}
+\subsubsection{Diffusjon}
+
 \section{Termodynamikkens andre lov}
 \subsection{To tilstands systemer - paramagnetisme}
 \textbf{Mikrotilstand} er alle partiklenes tilstander, \textbf{makrotilstand} sier
@@ -262,13 +288,13 @@ har de hvert sitt kjemiske potensial, da erstattes det siste leddet av en sum
 av $\mu_i \dd N_i$ ledd.
 \section{Motorer og kjølemaskiner}
 \subsection{Varmekraftmaskiner}
+\begin{wrapfigure}{R}{0.3\textwidth}
+  \includegraphics[width=0.3\textwidth]{figures/carnot.png}
+\end{wrapfigure}
 En \textbf{varmekraftmaskin} er et apparat som absorberer varme og omdanner
 deler av energien til arbeid. Et eksempel er dampturbinen. Grunnen til at kun
 deler av energien kan omdannes er at når varme strømmer inn kommer det også
 entropi, og denne må en kvitte seg med før prosessen kan starte om.
-\begin{wrapfigure}{R}{0.4\textwidth}
-  \includegraphics[width=0.3\textwidth]{figures/carnot.png}
-\end{wrapfigure}
 Varme kommer fra det \textbf{varme reservoiret} $T_H$ og varmen som dumpes dumpes til
 det \textbf{kalde reservoiret} $T_C$. Arbeidet motoren gjør er $W$. Alle størrelsene er positive.
 Effektivitet defineres som arbeid ut per varme inn
@@ -277,12 +303,31 @@ Effektivitet defineres som arbeid ut per varme inn
 \end{align*}
 Hvordan maksimere effektiviteten? Energibevaring gir $Q_h = Q_c + W$, som gir
 effektiviteten $e = \frac{Q_h - Q_c}{Q_h} = 1 - Q_c/Q_h$.
-
 Videre, entropien i systemet kan ikke bli mindre, så $Q_c / T_c \geq Q_h / T_h$.
 Settes dette inn i effektivitetsuttrykket over får man $e \leq 1 - T_c / T_h$.
 Velg $T_c$ og $T_h$ slik at forholdet blir så lite som mulig. Den første loven
 sier 'du kan ikke vinne', og den andre loven sier at 'du går uansett i underskudd'.
+\begin{wrapfigure}{R}{0.5\textwidth}
+  \includegraphics[width=0.5\textwidth]{figures/carnotPV.jpg}
+\end{wrapfigure}
 \subsubsection{Carnotsyklusen}
+Hvordan lage en motor som oppnår maksimal effektivitet for gitt $T_h$ og $T_c$?
+Enhver motor har væske/gass som transporterer energien. Først ønsker vi at
+gassen tar imot varme $Q_h$ fra det varme reservoiret, da synker entropien i
+reservoiret med $Q_h/T_h$, og entropien øker i gassen med $Q_h / T_\text{gass}$.
+For å unngå å lage mer entropi må $T_h = T_g$, men det går ikke, da transporteres
+ingen energi ved varme. Så sett $T_g$ litt lavere enn $T_h$, og hold den ved
+denne temperaturen når den varmes ved å la den ekspandere. Dette steget krever
+isoterm ekspansjon av gassen.
+
+Når gassen dumper varme til det kalde reservoiret vil vi temperaturen kun skal
+være infinitesimalt større enn $T_c$ for å lage minst mulig entropi. Og når varmen
+forlater la gassen komprimere isotermalt for å holde den ved denne temperaturen.
+Vi har altså isotermal ekspansjon ved temperatur litt mindre enn $T_h$ og isotermal
+kompressjon rett over $T_c$. Hvordan få gassen fra en temperatur til den andre og
+så tilbake? Vi ønsker ingen utveksling av varme i disse stegene, så de må være
+adiabatiske. Stegene er altså: 1: Isotermal ekspansjon ved $T_h$. 2: Adiabatisk ekspansjon
+fra $T_h$ til $T_c$. 3: Isotermal kompressjon ved $T_c$. 4: Til slutt adiabatisk kompressjon tilbake til $T_h$.
 
 \subsection{Kjølemaskiner}
 Kjølemaskiner er varmekraftmaskiner kjørt baklengs. Varme går fra det kalde
@@ -301,7 +346,7 @@ skal dannes ut av intet og plasseres i et annet system:
 \begin{align*}
   H \equiv U + PV
 \end{align*}
-\textbf{Helmoholtz fri energi} er energien som trengs for å lage et system, minus
+\textbf{Helmholtz fri energi} er energien som trengs for å lage et system, minus
 varmen man får 'gratis' fra omliggende atmosfære med temperatur $T$. Ekvivalent er
 dette energien som kan hentes ut dersom systemet annihileres, entropi kan ikke minke
 så entropi må dumpes ut som varme. $F$ er da energien man får ut som arbeid:
@@ -522,6 +567,25 @@ i grensen der $\epsilon \gg \mu$.
 \subsection{Konvertering mellom enheter}
 
 \subsection{Viktigste formler}
+Termodynamikkens tre lover (energibevaring, entropi øker og $S \rightarrow 0$ når $T \rightarrow 0$):
+\begin{align*}
+  \Delta E = Q + W \qquad \Delta{Q} = T \delta{S} \qquad S = k \ln{\Omega}, T = 0 \rightarrow \Omega = 1 \rightarrow S = 0
+\end{align*}
+Ideell gass lov
+\begin{align*}
+  PV = NkT = nRT
+\end{align*}
+Termodynamiske identiteter
+\begin{align*}
+  \dd U &= T \dd S - P \dd V + \mu \dd N \\
+  \dd H &= T \dd S + V \dd P + \mu \dd N \\
+  \dd F &= -S \dd T - P \dd V + \mu \dd N \\
+  \dd G &= -S \dd T + V \dd P + \mu \dd N
+\end{align*}
+Fri energi og partisjonsfunksjon relasjon
+\begin{align*}
+  F = -kT \ln{Z} \qquad Z = e^{-F/kT}
+\end{align*}
 \begin{align*}
   \mean{E} = - \frac{1}{Z} \pdv{Z}{\beta}
 \end{align*}
