@@ -12,17 +12,23 @@
 \usepackage{wrapfig}
 \usepackage{float}
 
-\usepackage[top=0.2in, bottom=0.2in, left=0.2in, right=0.2in]{geometry} % Reduce margins
+\usepackage[margin=0.1in]{geometry} % Reduce margins
 \newcommand{\mean}[1]{\langle #1 \rangle}
 
 
 \begin{document}
 \section{Energi i termofysikk}
 \subsection{Ideell gass}
-For lav-tetthets gasser gjelder
 \begin{align*}
   PV = NkT = nRT
 \end{align*}
+To derive velocity:
+$
+\overline{P}=\frac{\overline{F}_{x,on\ piston}}{A}=-\frac{m\left(\overline{\frac{\Delta v_x}{\Delta t}}\right)}{A}
+$.
+Use $\Delta t = 2L/v_x$ and $\Delta v_x=-2v_x$ to get $\overline{P}=m\overline{v_x^2}/V$. Then, using that $PV=NkT$, $1/2 m\overline{v_x^2} = 1/2kT$, so that $\overline{E}_k=3/2 kT$. Introduce $v_{\mathrm{rms}}=\sqrt{\overline{v^2}}$.
+\subsection{Equipartition of Energy}
+At temperature $T$ the average energy of any quadratic degree of freedom is $1/2 kT$. $U_{\mathrm{thermal}}=Nf/2 kT$.
 \subsection{Ekvipartisjon av energi}
 Gjelder for alle energiformer der formelen er en kvadratisk funksjon av koordinat-
 eller hastighetskomponent. Dersom det i et system er $N$ molekyler med $f$
@@ -116,7 +122,16 @@ tykkelse $\Delta x$, areal $A$ og som leder en varme $Q$ i løpet av en tid $\De
 \end{align*}
 der $k_t$ kalles \textbf{termisk konduktivitet} og er avhengig av materialet
 varmen ledes gjennom, f.eks glass.
-\subsubsection{Konduktiviteten til en ideell gass}
+\subsubsection{Conductivity of an ideal gas}
+Mean free path, $l$: volume of cylinder traced out by molecule equals the average volume per molecule. Collision occurs if molecule is within $2r$ of another molecule (pretend molecule has radius $2r$ all others are points:
+\begin{align*}
+\pi(2r)^2 l \approx \frac{V}{N} \implies l\approx \frac{1}{4\pi r^2}\frac{V}{N}
+\end{align*}
+Note that $V/N=kT/P$ for an ideal gas. Average time between collisions: $l/\overline{v}$. Now assume two boxes, length $l$ and thermal energy $U_1$ and $U_2$. Half the molecules will cross from one box to the other (those with positive $x$-velocity), giving the net heat flow:
+\begin{align*}
+Q=\frac{1}{2}(U_1-U_2)=-\frac{1}{2}C_V(T_2-T_1)=-\frac{1}{2}C_Vl\frac{dT}{dx}
+\end{align*}
+So that $k_t=(1/2)(C_V/V)l \overline{v}$. For an ideal gas (use $C_V=Nkf/2$), $C_V/V=fP/(2T)$. If $f$ constant then, as $l\propto V/N$, $k_t$ goes as $\sqrt{T}$ (from $\overline{v})$.
 \subsubsection{Viskositet}
 Momentum kan også spre seg gjennom et fluid. Situasjon med to parallele plater
 med fluid imellom (dynamisk viskositet $\eta$ eller $\mu$). Platene beveger seg med ulike hastigheter.
@@ -126,7 +141,11 @@ gitt ved
   \frac{|F_x|}{A} = \mu \frac{\dd u_x}{\dd z}
 \end{align*}
 \subsubsection{Diffusjon}
-
+Particle transport. Depends on concentration of particles, $n=N/V$. Get:
+\begin{align*}
+J_x=-D\frac{dn}{dx} \quad (\mathrm{Fick's\ Law})
+\end{align*}
+Where $J$ is the flux of particles (number per unit area per unit time). $D$ generally increases with temperature.
 \section{Termodynamikkens andre lov}
 \subsection{To tilstands systemer - paramagnetisme}
 \textbf{Mikrotilstand} er alle partiklenes tilstander, \textbf{makrotilstand} sier
@@ -144,7 +163,14 @@ Disse oscillatorene gjelder for atomene i faste stoffer, 3 oscillatorer per atom
 pga frihetsgrader. Multiplisiteten til Einstein solid med $N$ oscillatorer og
 $q$ energi enheter er
 \begin{align*}
-  \Omega(N,q) = \binom{q + N - 1}{q} = \frac{(q + N - 1)!}{q!(N-1)!}
+\Omega(N,q)={q+N-1\choose q}=\frac{(q+N-1)!}{q!(N-1)!}\approx \left(\frac{eq}{N}\right)^N\ \leftarrow \mathrm{when\ q>>N} \approx \frac{\left(\frac{q+N}{q}\right)^q\left(\frac{q+N}{N}\right)^N}{\sqrt{2\pi q(q+N)/N}} \leftarrow\ \mathrm{when\ q,N\ large}
+\end{align*}
+\begin{align*}
+S=k\ln (eq/N)^N=Nk[\ln(q/N)+1]=Nk\ln U-Nk\ln(\epsilon N)+Nk
+\end{align*}
+Assuming that $U=\epsilon q$. Differentiate $S$ to find $U=NkT$. Gives $C_V=Nk$. Also get:
+\begin{align*}
+\mu = -kT\ln \left(\frac{N+q}{N}\right)
 \end{align*}
 \subsection{Interagerende systemer}
 Har nå to Einstein solids, $A$ og $B$, som kan dele energi. Systemene uavhengige
@@ -167,7 +193,7 @@ Logartime gjør et veldig stort tall til et stort tall osv, dette brukes mye.
 \begin{align*}
   N! \approx N^N e^{-N}\sqrt{2\pi N}
 \end{align*}
-Korrekt i grensen $N \gg 1$. God approksimasjon for logaritmen er gitt som $\ln{N!} \approx N \ln N - N$.
+Korrekt i grensen $N \gg 1$. God approksimasjon for logaritmen er gitt som $\ln{N!} \approx N \ln N - N + (\frac{1}{2}\ln(2\pi N))$.
 \subsubsection{Multiplisiteten til et stort Einstein solid}
 Bruk Stirling på multiplisiteten til Einstein solid, med en rekkeutvikling av en
 logaritme underveis. I grensen $q \gg N$ fåes
@@ -195,6 +221,18 @@ Entropi kan ikke reduseres, enhver reduksjon i entropi i et system har skapt
 mer entropi utenfor systemet.
 \subsubsection{Entropi for en ideell gass}
 \subsubsection{Blandingsentropi}
+Distinguishable particles, initially separated into $V/2$ then allowed to expand:
+$
+\Delta S=2Nk\ln 2 \quad  (\mathrm{distinguishable)}
+$.
+If a fraction of molecules, $x$ is of species $B$::
+$
+\Delta S_{\mathrm{mixing}}=-Nk\left[x\ln x+(1-x)\ln (1-x)\right]
+$.
+For an ideal mixture (denser system, two types of molecules are of the same size and interact with each other the same way):
+$
+\Delta S_{\mathrm{mixing}}=k\ln {N\choose N_A}
+$.
 \section{Interaksjoner og implikasjoner}
 \subsection{Temperature}
 Se på system med to Einstein solids med noen hundre oscillatorer hver som deler
@@ -307,8 +345,8 @@ Videre, entropien i systemet kan ikke bli mindre, så $Q_c / T_c \geq Q_h / T_h$
 Settes dette inn i effektivitetsuttrykket over får man $e \leq 1 - T_c / T_h$.
 Velg $T_c$ og $T_h$ slik at forholdet blir så lite som mulig. Den første loven
 sier 'du kan ikke vinne', og den andre loven sier at 'du går uansett i underskudd'.
-\begin{wrapfigure}{R}{0.5\textwidth}
-  \includegraphics[width=0.5\textwidth]{figures/carnotPV.jpg}
+\begin{wrapfigure}{R}{0.3\textwidth}
+  \includegraphics[width=0.3\textwidth]{figures/carnotPV.jpg}
 \end{wrapfigure}
 \subsubsection{Carnotsyklusen}
 Hvordan lage en motor som oppnår maksimal effektivitet for gitt $T_h$ og $T_c$?
@@ -387,10 +425,9 @@ og bruk den termodynamiske identiteten til å eliminere $\dd U$. Gir
   \dd G &= -S \dd T + V \dd P + \mu \dd N
 \end{align*}
 Fra disse kan en rekke partiellderiverte relasjoner finnes. For eksempel
-\begin{align*}
+$
   S = -\left( \pdv{G}{T} \right)_{P,N}
-\end{align*}
-kan lages ved å bruke den siste og holde $P$ og $N$ konstant, dvs $\dd P = \dd N = 0$.
+$ kan lages ved å bruke den siste og holde $P$ og $N$ konstant, dvs $\dd P = \dd N = 0$.
 \subsection{Fri energi som kraft mot likevekt}
 \textbf{Reservoir} av energi: System stort nok til at det kan utveksle uendelig
 energi uten å endre sin temperatur. \newline \noindent
@@ -536,6 +573,24 @@ kan samles i en stor logaritme, som gir ligningen
   \frac{P_{\text{N}_2} P_{\text{H}_2^3}}{P^2_{\text{NH}_3} (P^o)^2} = e^{-\Delta G^o / RT}
 \end{align*}
 Ligningen kalles \textbf{Law of mass action}. Høyresiden kalles \textbf{likevektskonstanten}.
+\subsubsection{Disassociation:}
+$H_2O\leftrightarrow H^++OH^-$. Use $\mu^o_{H_2O}=\mu^o_{H^+}+kT\ln m_{H^+}+\mu_{OH^-}^o + kT\ln m_{OH^-}$ assuming the disassociation is small and $m$ is the molality (mole solute per kilogram solvent). Get:
+$
+m_{H^+}m_{OH^-}=e^{-\Delta G^o/RT}
+$
+Where the standard states are 1 molal.
+\subsubsection{Oxygen dissolving:}
+$O_2(g)\leftrightarrow O_2(aq)$.
+Use $\mu_{gas}^o+kT\ln(P/P^o)=\mu_{solute}^o+kT\ln m$ to get:
+$
+\frac{m}{P/P^o}=e^{-\Delta G_0/RT}
+$
+\subsubsection{Ionization of hydrogen}
+$H\leftrightarrow p+e$. Treat all as ideal gases, use align* \ref{eq:IdealGasMu}. Put in ionization energy $I$ explicitly, so that $\mu_H=\mu-I$ where $\mu$ is from align* \ref{eq:IdealGasMu} and $I$ is $13.6$ eV. Use ideal gas law to express with pressure, use that mass of proton and hydrogen are approximately equal, and get:
+$
+\frac{P_p}{P_H}=\frac{kT}{P_e}\left(\frac{2\pi m_e kT}{h^2}\right)^{3/2} e^{-I/kT} \quad (\mathrm{Saha\ align*})
+$
+Note that $P_e/kT=N_e/V$.
 \subsubsection{Evt. flere lignende utregninger som denne over for andre reaksjoner.}
 \section{Boltzmann statistikk}
 \subsection{Boltzmann faktoren}
@@ -547,21 +602,19 @@ et lukket system, så alle tilgjengelige mikrotilstander like sannsynlige. Har t
 multiplisiteten til reservoiret ved disse tilstandene: $\Omega_R(s_1)$ og $\Omega_R(s_2)$.
 Logikk tilsier at
 \begin{align*}
-  \frac{P(s_2)}{P(s_1)} = \frac{\Omega_R(s_2)}{\Omega_R(s_1)} = \frac{e^{S_R(s_2)/k}}{e^{S_R(s_1)/k}} = e^{[S_R(s_2) - S_R(s_1)]/k} = \frac{e^{-E(s_2)/kT}}{e^{-E(s_1)/kT}}
+  \frac{P(s_2)}{P(s_1)} = \frac{\Omega_R(s_2)}{\Omega_R(s_1)} = \frac{e^{S_R(s_2)/k}}{e^{S_R(s_1)/k}} = e^{[S_R(s_2) - S_R(s_1)]/k} = \frac{e^{-E(s_2)/kT}}{e^{-E(s_1)/kT}} \Rightarrow   P(s) = \frac{1}{Z} e^{-E(s)/kT}
 \end{align*}
 Eksponenten  nest siste likhet er endring i entropi. Bruker termodynamisk identitet $\dd S_R = 1/T (\dd U_R + P \dd V_R - \mu \dd N_R)$,
 kaster bort de siste to leddene (entropiendring som følge av volumendring neglisjerbar i forhold til energitilstandsendring, og
 antallet partikler er konstant). Kan skrive om entropiendringene til energiendringer, får siste likhet over. Faktorene i siste
 uttrykk kalles Boltzmann faktorer, disse er sannsynligheter så lenge de normaliseres med en partisjonsfunksjon $Z$.
-\begin{align*}
-  P(s) = \frac{1}{Z} e^{-E(s)/kT}
-\end{align*}
+
 Observasjoner: Sannsynligheten går ned for høyere energis tilstander.
 \subsubsection{Partisjonsfunksjonen}
 Har ved loven om total sannsylighet (setter ofte $\beta = 1 / kT$)
-\begin{align*}
+$
   Z = \sum_s e^{-\beta E(s)}
-\end{align*}
+$
 \subsection{Forventningsverdier (gjennomsnittsverdier)}
 \begin{align*}
   \mean{X} = \sum_s X(s) P(s) = \sum_s X(s) e^{-\beta E(s)}
@@ -729,45 +782,56 @@ Gjennomsnittlig antall partikler i tilstanden er (sett $x = (\epsilon - \mu)/kT$
 \end{align*}
 Dette kalles \textbf{Bose-Einstein fordelingen}. Begge disse fordelingene reduserer til Boltzmannfordelingen
 i grensen der $\epsilon \gg \mu$.
-\subsection{Degenererte Fermi gasser}
-Betrakter elektroner, men det under gjelder for alle fermioner. Temperatur så lav
-at kravet $V/N \gg v_Q$ er langt unna å være oppfylt. For et elektron ved
-romtemperatur er $v_Q = (h / \sqrt{2\pi m k T})^3 = (4.3 \text{ mm})^3$. I et metall
-er volumet per ledningselektron $(0.2\text{nm})^3$, så temperaturen er for lav til
-at Boltzmannstatistikk kan anvendes. Vi betrakter derfor det motsatte tilfellet,
-og setter i første omgang $T = 0$.
-\subsubsection{Temperatur lik null}
-Fermi-Dirac fordelingen blir en step-function. Alle enpartikkel tilstander med
-energi mindre enn $\mu$ er tatt opp, alle tilstander med større energi er ikke
-tatt opp. Her kalles $\mu$ for \textbf{Fermi energien}, skrevet $\epsilon_F \equiv \mu(T = 0)$.
-Når en elektrongass er så kalt at nesten alle tilstandene under $\epsilon_F$ er tatt opp, mens alle
-over ikke er det, kalles \textbf{degenerert} (ikke relatert til vanlig bruk av ordet i QM).
-
-Verdien til $\epsilon_F$ bestemmes av antallet elektroner tilstede. Tom boks,
-legg til et elektron av gangen, hvert nye elektron går da til den laveste
-tilgjengelige tilstanden, til det siste elektronet går i en tilstand rett under
-$\epsilon_F$. Å legge til et elektron må få en energi $\epsilon_F$, siden $\mu = \left( \pdv{U}{N} \right)_{S,V}$
-og $\dd U = \mu$ når $\dd N = 1$.
-
-Approksimasjon: Ingen andre krefter i det hele tatt utenom at de er fanget i en boks med $V = L^3$,
-for ledningselektroner i et metall er dette ikke en god approksimasjon på grunn av
-tiltrekkende krefter fra ioner i krystallen. For elektron i en boks er bølgefunksjonene
-sinusoidale med $\lambda_n = 2L/n$ og $p_n = h/\lambda_n = hn/2L$. I tre dimensjoner
-er det en slik for hver dimensjon, tillatte energier er derfor $\epsilon = \vb p^2 / 2m = \frac{h^2}{8mL^2} (n_x^2 + n_y^2 + n_z^2)$.
-
-\subsubsection{Små temperaturer større enn null}
+\subsection{Degenerate Fermi Gas}
+Need to look at $v_Q$. For metals, $V/N<<v_Q$, too low temperature to use Boltzmann, can pretend $T=0$. Then Fermi-Dirac is a step function, lowest occupied energy is $\epsilon_F$ so $\epsilon_F=\mu(T=0)$. Ignoring interactions (assuming free particles), $\epsilon=(h^2/8mL^2)(n_x^2+n_y^2+n_z^2)$. Note that $\epsilon_F$ is energy of a state sitting at the edge of the sphere (positive octant), so $\epsilon_F=h^2n_{max}^2/(8mL^2)$. But the volume in n-space is $2\times 1/8\times 4/3\pi n_{\mathrm{max}}^3 = \pi n_{max}^3/3$. So:
 \begin{align*}
-  U = \frac{3}{5} N \epsilon_F + \frac{\pi^2}{4} N \frac{(kT)^2}{\epsilon_F} \implies C_V = \left( \pdv{U}{T} \right) = \frac{\pi^2 N k^2 T}{2\epsilon_F}
+\epsilon_F=\frac{h^2}{8m}\left(\frac{3N}{\pi V}\right)^{2/3}\quad \mathrm{(intensive)}
 \end{align*}
-\subsubsection{Tetthet av tilstander}
-
-\subsection{Sort legeme stråling}
+\begin{align*}
+U=2\int_0^{n_max}dn\int_0^{\pi/2}d\theta \int_0^{\pi/2} d\phi n^2\sin \theta \ \epsilon(n)=\frac{3}{5}N\epsilon_F=\int_0^{\epsilon_F}\underbrace{\left[\frac{\pi}{2}\left(\frac{8mL^2}{h^2}\right)^{3/2}\sqrt{\epsilon}\right]}_{=g(\epsilon)} d\epsilon \quad (T=0)
+\end{align*}
+Note that $V/N<<v_Q$ is the same as $kT<<\epsilon_F$. Fermi temperature: $T_F=\epsilon_F/k$. Use $P=-(\partial U/\partial V)_{S,N}$ to get $P=2U/(3V)$. If small, nonzero temperature: The number of particles that escape the sphere is $NkT$ (must be proportional to $T$, and $N$ a extensive). \begin{align*}
+U=\frac{3}{5}N\epsilon_F+\frac{\pi^2}{4}N\frac{(kT)^2}{\epsilon_F}\quad C_V=\left(\frac{\partial U}{\partial T}\right)_V=\frac{\pi^2Nk^2T}{2\epsilon_F}
+\end{align*}
+General temperature:
+\begin{align*}
+N=\int_0^{\infty} g(\epsilon)\overline{n}_{FD}(\epsilon)d\epsilon \quad U=\int_0^{\infty} \epsilon g(\epsilon)\overline{n}_{FD}(\epsilon)d\epsilon
+\end{align*}
+Generally, chemical potential decreases as $T$ increases (Fermi-Dirac is symmetric about $\epsilon=\mu$). More precisely:
+\begin{align*}
+\frac{\mu}{\epsilon_F}=1-\frac{\pi^2}{12}\left(\frac{kT}{\epsilon_F}\right)^2+...
+\end{align*}
+\subsection{Blackbody Radiation}
+Ultraviolet catastrophe: Each mode in the field has energy $kT$, infinite number of modes, infinite energy. Solution: $E_n=nhf$, $n\in \mathbb{N}^+$. For a single oscillator then:
+\begin{align*}
+Z=1+e^{-\beta hf}+e^{-2\beta hf}+...=\frac{1}{1-e^{-\beta hf}}\quad \overline{E}=\frac{hf}{e^{hf/kT}-1}
+\end{align*}
+Average number of "units of energy" (photons) in a single oscillator is $\overline{n}=1/(\exp(hf/kT)-1)$ (Planck Distribution). But photons are bosons, must follow Bose-Einstein $\rightarrow$ $\mu=0$ for photons (follows also because $N$ arbitrary for photons so $(\partial F/\partial N)_{T,V}=0=\mu$ or from $e\leftrightarrow e+\gamma \implies \mu_e=\mu_e+\mu_{\gamma}$). Energy for photons is $\epsilon=pc=hcn/2L$. Each wave shape can hold two photons. Gives the total energy per unit volume as:
+\begin{align*}
+\frac{U}{V}=\int_0^{\infty} \underbrace{\frac{8\pi \epsilon^3/(hc)^3}{\exp(\epsilon/kT)-1}}_{\mathrm{Spectrum\ of\ photon}} d\epsilon = \frac{8\pi^5(kT)^4}{15 (hc)^3}
+\end{align*}
+Spectrum peaks at $\epsilon=2.82 kT$ (Wien's law). Heat capacity/entropy:
+\begin{align*}
+C_V=4aT^3 \quad S(T)=\int_0^T \frac{C_V(T')}{T'}dT'=4aT^3 \quad N=8\pi V\left(\frac{kT}{hc}\right)^3 \int_0^{\infty} \frac{x^2}{e^x-1}dx
+\end{align*}
+Where $a=8\pi^5k^4V/15(hc)^3$.
+\subsection{Photons Escaping through a Hole}
+Spectrum outside of box with hole is same as inside, as all photons travel at the same speed. Energy comes from spherical shell, distance $R$ from hole, with angle $\theta$ to the normal of the hole. Look at chunk of spherical shell: volume $R^2 \sin \theta c\ dt d\theta d\phi$. Energy is this times $U/V$.Probability of escape is $A\cos \theta/4\pi R^2$ with $A$ aperture size. Total energy escaping:
+\begin{align*}
+\int_0^{2\pi}d\phi \int_0^{\pi/2} d\theta \frac{A\cos \theta}{4\pi}\frac{U}{V}cdt\sin \theta = \frac{A}{4}\frac{U}{V}cdt
+\end{align*}
+Which gives power per unit area as:
+\begin{align*}
+P=\frac{2\pi^5}{15}\frac{\left(kT\right)^4}{h^3c^2}=\sigma T^4 \ \mathrm{(Stefan-Boltzmann\ law)}
+\end{align*}
+If reflecting: remember to include emissitivity, $e$.
+\subsection{The Sun and the Earth}
+Absorbed power: solar constant$\times \pi R^2= 4\pi R^2\sigma T^4$ : emitted power.
 \section{Viktigste formler + annet nyttig}
 \subsection{Summer/integraler}
 \begin{align*}
-  \sum_{k = 0}^{n} r^k &= \frac{1 - r^{n+1}}{1 - r} \quad \text{Sum av endelig geometrisk rekke}\\
-  \sum_{k = 0}^{\infty} r^k &= \frac{1}{1-r} \qquad \text{Sum av uendelig geometrisk rekke (mye brukt for partisjonsfunksjoner/Gibbssummer)} \\
-  \int_{-\infty}^\infty e^{-x^2} \dd x &= \sqrt{\pi}
+  \sum_{k = 0}^{n} r^k &= \frac{1 - r^{n+1}}{1 - r} \quad \leftarrow \text{Sum av endelig geometrisk rekke} \qquad \text{Gaussintegral:} \int_{-\infty}^\infty e^{-x^2} \dd x = \sqrt{\pi}\\
+  \sum_{k = 0}^{\infty} r^k &= \frac{1}{1-r} \qquad \text{Sum av uendelig geometrisk rekke (mye brukt for partisjonsfunksjoner/Gibbssummer)}
 \end{align*}
 \subsection{Kombinatorikk}
 1. To operasjoner som kan gjøres på $n$ og $m$ måter kan kombineres på $m \cdot n$ måter.
@@ -779,23 +843,18 @@ er det en slik for hver dimensjon, tillatte energier er derfor $\epsilon = \vb p
   \binom{n}{n_1 n_2 \hdots n_r} = \frac{n!}{n_1! n_2! \hdots n_r!} \quad \text{Antall måter $n$ elementer kan deles inn i $r$ delmengder med $n_i$ elementer}
 \end{align*}
 \subsection{Viktigste formler}
-Termodynamikkens tre lover (energibevaring, entropi øker og $S \rightarrow 0$ når $T \rightarrow 0$):
-\begin{align*}
-  \Delta E = Q + W \qquad \Delta{Q} = T \delta{S} \qquad S = k \ln{\Omega}, T = 0 \rightarrow \Omega = 1 \rightarrow S = 0
-\end{align*}
 Termodynamiske identiteter
 \begin{align*}
-  \dd U &= T \dd S - P \dd V + \mu \dd N \\
-  \dd H &= T \dd S + V \dd P + \mu \dd N \\
-  \dd F &= -S \dd T - P \dd V + \mu \dd N \\
-  \dd G &= -S \dd T + V \dd P + \mu \dd N
+  \boxed{\dd U = T \dd S - P \dd V + \mu \dd N} \quad
+  \boxed{\dd H = T \dd S + V \dd P + \mu \dd N} \quad
+  \boxed{\dd F = -S \dd T - P \dd V + \mu \dd N} \quad
+  \boxed{\dd G = -S \dd T + V \dd P + \mu \dd N}
 \end{align*}
 Fri energi og partisjonsfunksjon relasjon
 \begin{align*}
-  F = -kT \ln{Z} \qquad Z = e^{-F/kT}
-\end{align*}
-\begin{align*}
+  F = -kT \ln{Z} \qquad Z = e^{-F/kT} \qquad
   \mean{U} = - \frac{1}{Z} \pdv{Z}{\beta}
 \end{align*}
-\section{Kort om forsøkene vi hadde! }
+\textbf{Maxwellrelasjoner:} Eks: $\left( \pdv{T}{V} \right)_S = -\left( \pdv{P}{S} \right)_V = \pdv[2]{U}{V}{S}$ kan lages fra å anta rekkefølgen på andrederiverte operatorer
+ikke av betydning, fra: $\pdv{V}\pdv{U}{S} = \pdv{S}\pdv{U}{V}$.
 \end{document}
