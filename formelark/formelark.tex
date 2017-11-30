@@ -433,6 +433,12 @@ vokse i proporsjon med $N$ når de intensive egenskapene holdes konstant. Derfor
 Det samme argumentet gjelder ikke for $\mu = \left(\pdv{F}{N}\right)_{T,V}$, siden
 tettheten endrer seg og da vil $\mu$ endre seg. Dette kommer av at $V$ er en ekstensiv størrelse.
 Generalisering av uttrykket over blir $G = \sum_i N_i \mu_i$ når det er flere typer partikler.
+
+Anvendelse: Termodynamisk identitet og det over gir $\pdv{\mu}{P} = \frac{1}{N} \pdv{G}{P} = \frac{V}{N} \overset{\text{Ideell gass lov}}{=} \frac{kT}{P}$.
+Integrerer opp begge sider fra $P^o$ til $P$ gir $\mu(T,P) - \mu(T, P^o) = kT\ln{P/P^o}$. $P^o$ er et passende referansetrykk. Symbolet for
+kjemisk potensial ved atmosfæretrykk er $\mu(T,P^o) = \mu^o$. Vi skriver derfor $\mu(T,P) = \mu^o(T) + kT \ln{(P/P^o)}$.
+Verdier for $\mu^o$ finnes i tabeller for Gibbs fri energi ($\mu = G/N$). Forrige ligning forteller
+hvordan kjemisk potensial varierer med trykk (eventuelt tetthet) endringer.
 \subsection{Faseoverganger}
 En \textbf{faseovergang} er en diskontinuerlig endring i egenskapene til et stoff
 når noe rundt bare endres infinitesimalt. Et \textbf{fasediagram} viser likevektsfaser
@@ -443,7 +449,18 @@ kan ikke væskeformen eksistere, fast stoff sublimerer til gass.
 
 Ta med eksempler på fasediagrammer. Skriv kort om Heliumene og magnetisk system.
 \subsubsection{Diamanter og grafitt}
+Karbon har to faser, diamant og grafitt (Begge fast stoff men ulike krystallstrukturer). Grafitt
+mer stabilt enn diamant, så diamant vil av seg selv bli grafitt over tid (veldig treig prosess) ved 1 atmosfæres trykk.
+Dette gjenspeiles i Gibbs fri energi, som er større for diamant enn grafitt. Hva med for
+høyere trykk? $\left( \pdv{G}{P} \right)_{T,N} = V$, og siden et mol grafitt har høyere
+volum enn et mol diamant vil Gibbs fri energi vokse mer enn for diamant når trykk økes.
+Det vil si: Ved høyt nok trykk vil diamant ha lavest Gibbs fri energi, så
+diamant vil være mer stabil (grafitt spontant konverteres til diamant). Dette
+forklarer hvordan naturlige diamanter lages dypt ned i jorden, der trykket er høyere.
 
+Tilsvarende for temperatur $\left( \pdv{G}{T} \right)_{P,N} = -S$: når temperaturen
+økes går $G$ ned for begge fasene, men den går mer ned for grafitt siden det har mer entropi. Høyere
+temperatur gjør grafitt mer stabilt enn diamant.
 \subsubsection{Clausius-Clapeyron relasjonen}
 Gir stigningstallet til faseovergangsgrensegrafen i et PT-diagram. Ved faseovergangen
 er materialet like stabilt som væske som gass, så Gibbs fri energi må være lik uansett
@@ -457,6 +474,69 @@ Utvider dette med termodynamisk identitet: $-S_l \dd T + V_l \dd P = -S_g \dd T 
   \dv{P}{T} = \frac{S_g - S_l}{V_g - V_l} = \frac{L}{T \Delta V} \quad \text{Clausius-Clapeyron. Gjelder for alle fasegrenser.}
 \end{align*}
 \subsubsection{Van der Waals modellen}
+\begin{wrapfigure}{R}{0.3\textwidth}
+  \includegraphics[width=0.3\textwidth]{figures/pV-vdW.png}
+  \includegraphics[width=0.3\textwidth]{figures/Van_der_Waals_GibbsP.png}
+\end{wrapfigure}
+Tilstandsligning $(P + aN^2 / V^2) (V-Nb) = NkT$. Gjelder for fluider i flytende og gass form.
+Modifikasjon til ideell gass lov. Endringer er: \textbf{1:} Et fluid kan ikke presses ned til null
+volum, setter nedre grense $V = Nb$. $b$ representerer minimum volum tatt opp av et molekyl
+når det er 'inntil' alle sine naboer. \textbf{2:} Trykkmodifikasjonen tar med kort avstands
+tiltrekkende krefter mellom molekylene når de ikke krasjer.
+
+Ligningen tar hensyn til egenskaper til ekte fluider, men er ikke i nærheten av eksakt. Konstantene $a$ og $b$
+varierer selv for de samme stoffene under ulike forhold. For $N_2$ og $H_2 O$ er $b \approx 6 \times 10^{-29} m^3 \approx (4 \text{Å})^3$,
+omtrent kuben av den gjennomsnittlige bredden til molekylet. $a$ veldig liten.
+
+Isotermene ($PV$-linjer for ulike temperaturer) er konkav-opp for store nok volum,
+slik som for ideell gass. Når $V$ synker får grafen en merkelig oppførsel, isotermen
+vokser, synker og vokser igjen. Tilsynelatende kan det å senke volumet senke trykket,
+men ekte fluider oppfører ikke slik, men dypere analyse viser at dette faktisk ikke
+er tilfelle.
+
+Ved gitt temperatur og trykk er likevektstilstanden bestemt av Gibbs fri energi. Termodynamisk identitet for $G$ gir $\dd G = V \dd P$. Deler begge sider på $\dd V$, får
+$\left( \pdv{G}{V} \right)_{N,T} = V\left( \pdv{P}{V} \right)_{N,T}$. Høresiden beregnes rett fra van der Waals ligningen, så $\left( \pdv{G}{V} \right)_{N,T} = - \frac{NkTV}{(V-Nb)^2} + \frac{2aN^2}{V^2}$.
+Integrer opp for å finne Gibbs fri energi. Plott av Gibbs fri energi mot trykk viser en triangulær sløyfe,
+disse punktene er ustabile. Når volumet senkes sakte vil $G$ ikke gå innom sløyfen, og få en brå reduksjon i volum.
+Dette er en faseovergang. Trykket ved faseovergangen kan leses av $PV$-diagrammet. Observer at i sløyfen er
+$0 = \int_\text{loop} \dd G = \int_\text{loop} \left( \pdv{G}{P} \right)_{T} \dd P = \int_\text{loop} V\dd P$.
+Altså må en finne dette på $PV$-diagrammet. Kalles \textbf{Maxwell konstruksjon}.
+
+For høy temperatur isotermer er det ingen slik brå overagng. Grensen for dette kalles
+kritisk temperatur $T_C$. Damptrykket ved $T_C$ kalles kritisk trykk $P_C$ med
+korresponderende kritisk volum $V_C$. Disse verdiene definerer det \textbf{kritiske punktet}.
+
+\subsection{Kjemisk likevekt}
+Kjemiske reaksjoner er tilnærmet aldri helt fullstendige. Hvorfor det, burde ikke den
+ene siden av en reaksjonsligning/likevekt være mer stabil og da alt gå til den formen? Kort forklaring:
+På det molekylære nivået krasjer atomer innimellom og splitter til ioner osv. Likevekt
+mellom splitting og samling blir nådd på et punkt.
+
+Mer abstrakt: Likevekt når Gibbs fri energi er lavest mulig. $H_2 O$ har mye lavere
+$G$ enn $H^+$ og $OH^-$ ioner, men hvis det er noen ioner vil entropien øke slik at
+$G$ blir enda lavere. Dette er ekvivalent med å kreve $\dd G = \sum_i \mu_i \dd N_i$.
+$\dd N_i$ er gitt ved å se på antallet av hver i reaksjonsligning, og da får man
+en ligning med kjemiske potensialer som må være oppfylt ved likevekt. Generelt kan
+vi skrive: ($X_i$'er er kjemisk navn på stoff, $\nu_i$ er antall av denne og $\mu_i$ kjemisk potensial.)
+\begin{align*}
+  \nu_1 X_1 + \nu_2 X_2 + \hdots \leftrightarrow \nu_3 X_3 + \nu_4 X_4 + \hdots \\
+  \Rightarrow \nu_1 \mu_1 + \nu_2 \mu_2 + \hdots = \nu_3 \mu_3 + \nu_4 + \mu_4 + \hdots
+\end{align*}
+\subsubsection{Nitrogen fiksering}
+Betrakt reaksjonen $\text{N}_2 + 3 \text{H}_2 \leftrightarrow 2 \text{NH}_3$.
+Likevektskravet er $\mu_{\text{N}_2} + 3 \mu_{\text{H}_2} = 2 \mu_{\text{NH}_3}$. Hvis alt er
+ideelle gasser kan kjemisk potensial ligning fra noen delkapitler siden brukes, gir
+\begin{align*}
+  \mu^o_{\text{N}_2} + kT \ln{\left( \frac{P_{\text{N}_2}}{P^o} \right)} + 3 \mu^o_{\text{H}_2} + 3kT\ln{\left( \frac{P_{\text{H}_2}}{P^o} \right)} = 2 \mu^o_{\text{NH}_3} + 2kT \ln{\left( \frac{P_{\text{NH}_3}}{P^o} \right)}
+\end{align*}
+Samle ledd, alle $\mu^o$-ene kan samles på høyresiden, dette er Gibbs fri energi for reaksjonen $\Delta G^o$ (finnes i tabeller). Venstresiden
+kan samles i en stor logaritme, som gir ligningen
+\begin{align*}
+  RT \ln{\left( \frac{P_{\text{N}_2} P_{\text{H}_2^3}}{P^2_{\text{NH}_3} (P^o)^2} \right)} = \Delta G^o \\
+  \frac{P_{\text{N}_2} P_{\text{H}_2^3}}{P^2_{\text{NH}_3} (P^o)^2} = e^{-\Delta G^o / RT}
+\end{align*}
+Ligningen kalles \textbf{Law of mass action}. Høyresiden kalles \textbf{likevektskonstanten}.
+\subsubsection{Evt. flere lignende utregninger som denne over for andre reaksjoner.}
 \section{Boltzmann statistikk}
 \subsection{Boltzmann faktoren}
 \textbf{Degenerert:} Flere uavhengige tilstander som tilsvarer samme energinivå.
