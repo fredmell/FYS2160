@@ -12,7 +12,7 @@
 \usepackage{wrapfig}
 \usepackage{float}
 
-\usepackage[top=0.4in, bottom=0.4in, left=0.4in, right=0.4in]{geometry} % Reduce margins
+\usepackage[top=0.2in, bottom=0.2in, left=0.2in, right=0.2in]{geometry} % Reduce margins
 \newcommand{\mean}[1]{\langle #1 \rangle}
 
 
@@ -394,7 +394,45 @@ kan lages ved å bruke den siste og holde $P$ og $N$ konstant, dvs $\dd P = \dd 
 \subsection{Fri energi som kraft mot likevekt}
 \textbf{Reservoir} av energi: System stort nok til at det kan utveksle uendelig
 energi uten å endre sin temperatur. \newline \noindent
-Betrakt et system med
+Betrakt et system i kontakt med et reservoir $R$ av uendelig størrelse, slik at
+det kan slippe uendelige mengder energi uten å endre sin temperatur. Total entropi
+for universet blir $S + S_R$. Husk at entropi har en tendens til å øke, betrakt
+liten endring i entropi $\dd S_\text{tot} = \dd S + \dd S_R$. Bruker termodynamisk identitet $\dd S = \dd U /T + \dd V P/T - \dd N \mu /T$
+for reservoiret og antar konstant volum og antall partikler, så endringen i entropi kan skrives $\dd S_\text{tot} = \dd S + \dd U_R / T_R$.
+Men temperaturene i systemet og reservoiret er like, så energiutvekslingene må være like. Så
+\begin{align*}
+  \dd S_\text{tot} = \dd S - \frac{1}{T} \dd U = - \frac{1}{T}(\dd U - T\dd S) = - \frac{1}{T} \dd F
+\end{align*}
+Konklusjon: Med konstant $T, V, N$ tilsvarer økning i $S$ for universet en minking
+av $F$ (Helmholz fri energi) for systemet! Tilsvarende, ved å la trykket være lik reservoiret og
+lar volumet variere finner man at $\dd S_\text{tot} = -\frac{1}{T}\dd G$, så Gibbs fri
+energi har en tendens til å minke for systemet. Oppsummering:
+\begin{itemize}
+  \item Ved konstant energi og volum tendenserer entropien $S$ til å øke.
+  \item Ved konstant temperatur og volum tendenserer $F$ til å minke.
+  \item Ved konstant temperatur og trykk tendenserer $G$ til å minke.
+\end{itemize}
+Litt intuisjon om dette, $F \equiv U - TS$, så under konstant temperatur er minking av
+$F$ tilsvarende økning av $S$ (som gir mening jf. andre lov i termo) og minking i $U$. Dette
+gir intuitivt mening, men hvorfor? Når systemet gir opp energi går denne energien til
+omgivelsene, som fører til en økning i entropi (dette er viktigst for små $T$, mens systementropi viktigst for større $T$).
+Tilsvarende betraktninger gjelder for Gibbs fri energi.
+\subsubsection{Extensive and intensive quantities}
+Dersom man kopierer et system og setter det sammen med det originale systemet til
+et nytt system, vil noen variable dobles og noen forbli uendret. Variablene som dobles
+kalles \textbf{ekstensive} egenskaper, mens variablene som ikke endrer seg er \textbf{intensive}.
+Ekstensive egenskaper er $V, N, S, U, H, F, G, \text{masse}$, mens intensive egenskaper er eksempelvis
+$T, P, \mu, \text{tetthet}$.
+\subsubsection{Gibbs fri energi og kjemisk potensial}
+Husker at $\mu = \left(\pdv{G}{N}\right)_{T,P}$. $T$ og $P$ (intensive størrelser) holdes
+konstant, så dersom vi legger til en partikkel øker $G$ med $\mu$. Dette er fordi $G$ må
+vokse i proporsjon med $N$ når de intensive egenskapene holdes konstant. Derfor er
+\begin{align*}
+  G = N \mu \text{ som sier at det kjemiske potensialet er Gibbs fri energi per partikkel}
+\end{align*}
+Det samme argumentet gjelder ikke for $\mu = \left(\pdv{F}{N}\right)_{T,V}$, siden
+tettheten endrer seg og da vil $\mu$ endre seg. Dette kommer av at $V$ er en ekstensiv størrelse.
+Generalisering av uttrykket over blir $G = \sum_i N_i \mu_i$ når det er flere typer partikler.
 \subsection{Faseoverganger}
 En \textbf{faseovergang} er en diskontinuerlig endring i egenskapene til et stoff
 når noe rundt bare endres infinitesimalt. Et \textbf{fasediagram} viser likevektsfaser
@@ -402,6 +440,23 @@ kom funksjon av trykk og temperatur. Trykket der en gass kan sameksistere med fl
 fase kalles \textbf{damptrykket}. Punktet (kombinasjonen av $P$ og $T$) der
 alle tre faser sameksisterer kalles \textbf{trippelpunktet}. Ved lavere temperaturer
 kan ikke væskeformen eksistere, fast stoff sublimerer til gass.
+
+Ta med eksempler på fasediagrammer. Skriv kort om Heliumene og magnetisk system.
+\subsubsection{Diamanter og grafitt}
+
+\subsubsection{Clausius-Clapeyron relasjonen}
+Gir stigningstallet til faseovergangsgrensegrafen i et PT-diagram. Ved faseovergangen
+er materialet like stabilt som væske som gass, så Gibbs fri energi må være lik uansett
+fase: $G_l = G_g$. (Tilsvarende: Væske og gass i diffusiv likevekt - kjemisk potensial per partikkel
+(Gibbs fri energi) må være like).
+Øk så temperaturen og trykket med $\dd T$ og $\dd P$ slik at de to fasene er like
+stabile, da må Gibbs fri energi endre seg like mye for begge: $\dd G_l = \dd G_g$.
+Utvider dette med termodynamisk identitet: $-S_l \dd T + V_l \dd P = -S_g \dd T + V_g \dd P$
+($\mu \dd N$ leddet ikke med siden $N$ konstant). Dette gir ($\Delta S = S_g - S_l = L/T$ der $L$ er latent varme)
+\begin{align*}
+  \dv{P}{T} = \frac{S_g - S_l}{V_g - V_l} = \frac{L}{T \Delta V} \quad \text{Clausius-Clapeyron. Gjelder for alle fasegrenser.}
+\end{align*}
+\subsubsection{Van der Waals modellen}
 \section{Boltzmann statistikk}
 \subsection{Boltzmann faktoren}
 \textbf{Degenerert:} Flere uavhengige tilstander som tilsvarer samme energinivå.
@@ -494,7 +549,46 @@ Generelt, for $N$ partikler er
   Z_\text{total} = Z_1 Z_2 \hdots Z_N \qquad \text{($N$ noninteracting, distinguishable particles)} \\
   Z_\text{total} = \frac{1}{N!} Z_1^N \qquad \text{($N$ noninteracting, indistinguishable particles)}
 \end{align*}
-\subsection{Ideel gass igjen}
+\subsection{Ideell gass med partisjonsfunksjonbetraktning}
+Hvert molekyl kan ta opp en masse forskjellige tilstander, partisjonsfunksjonen for
+hver partikkel er $Z_1$, og systemets partisjonsfunksjon er $Z = Z_1^N / N!$, siden
+partiklene er ikke skillbare. Boltzmannfaktorene er på formen $e^{-E(s)/kT} = e^{-E_\text{tr}(s)/kT} e^{-E_\text{int}(s)/kT}$,
+der energien er delt i translasjonell og indre (rotasjon, vibrasjon eller whatever) energi.
+Summen av tilstander kan skrives som en dobbeltsum over translasjonell og indre bidrag, så $Z_1 = Z_\text{tr} Z_\text{int}$.
+
+\textbf{Translasjonell del:} Hver partikkel i boks (infinite square well). Løsninger
+sinusoidale med $\lambda_n = 2L / n$ for heltallige $n$ som gir $p_n = h / \lambda = hn/2L$.
+Energiene blir $E_n = \frac{p_n^2}{2m} = \frac{h^2 n^2}{8mL^2}$. Putt disse energiene
+inn i Boltzmannfaktorer og regn ut translasjonell partisjonsfunksjon. $Z_\text{1d} = \sum_n e^{-E_n / kT} = \sum_n e^{-h^2 n^2 / 8mL^2 kT}$.
+Så lenge $L$ og/eller $T$ ikke er kjempesmå er energinivåene veldig tett på hverandre,
+approksimerer summen som et integral. $\ell_Q$ kalles kvantelengden, utenom $\pi$-faktoren
+er den De Broglie bølgelengden til en partikkel med masse $m$ og energi $kT$.
+\begin{align*}
+  Z_\text{1d} = \int_0^\infty e^{-h^2 n^2 / 8mL^2 kT} \dd n = \sqrt{\frac{2\pi m k T}{h^2}}L \equiv \frac{L}{\ell_Q}
+\end{align*}
+For en realistisk boks er dette er veldig stort tall, ergo er det mange tilstander tilgjengelig.
+I tre dimensjoner er summen en sum over $n_x$, $n_y$ og $n_z$ av produktet av boltzmannfaktorer med $n_x$ osv.
+Dette blir et tredimensjonalt integral som kan skrives som produktr av integralet over, resultatet er
+$\frac{L_x}{\ell_Q}\frac{L_y}{\ell_Q}\frac{L_z}{\ell_Q} = \frac{V}{v_Q}$. Her er $v_Q = \ell^3$ kvantevolumet.
+
+Med disse resultatene har vi for en partikkel $Z_1 = \frac{V}{v_Q} Z_\text{int}$,
+hvor den indre partisjonsfunksjonen er en sum over indre tilstander. For hele gassen med $N$ molekyler
+er $Z = \frac{1}{N!} \left( \frac{V Z_\text{int}}{v_Q} \right)^N$. Logaritmen er $\ln Z = N[\ln V + \ln Z_\text{int} - \ln N - \ln v_Q + 1]$.
+\subsubsection{Utregning av andre størrelser}
+\begin{align*}
+  U   &= - \frac{1}{Z}\pdv{Z}{\beta} = -\pdv{\beta} \ln{Z} = -N \pdv{\beta} Z_\text{int} + \frac{N}{v_Q} \pdv{v_Q}{\beta} = N \mean{E_\text{int}} + N \frac{3}{2}\frac{1}{\beta} = U_\text{int} + \frac{3}{2}NkT \\
+  C_V &= \pdv{U}{T} = \pdv{U_\text{int}}{T} + \frac{3}{2}Nk
+\end{align*}
+For en diatomisk gass er det indre bidraget til varmekapasiteten fra rotasjon og vibrasjon, som begge legger til om lag $Nk$ til
+varmekapasiteten ved høye nok temperaturer, og går til $0$ ved lave temperaturer. I teorien
+forsvinner det translatoriske bidraget ved lave temperaturer, men bare hvis $\ell_Q \sim L$, så
+å bytte om til et integral fra summen over blir feil. Andre størrelser:
+\begin{align*}
+  F   &= -kT\ln{Z} = -NkT[\ln V + \ln Z_\text{int} - \ln{N} - \ln{v_Q} + 1] = -NkT [\ln V + \ln Z_\text{int} - \ln{N} - \ln{v_Q} + 1] + F_\text{int} \\
+  P   &= \left( \pdv{F}{V} \right)_{T,N} = \frac{NkT}{V} \qquad
+  S   = \left( \pdv{F}{T} \right)_{V,N} = Nk \left[ \ln{\left( \frac{V}{v_Q N} \right)} + \frac{5}{2} \right] - \pdv{F_\text{int}}{T} \qquad
+  \mu = \left( \pdv{F}{N} \right)_{T,V} = -kT \ln{\left( \frac{V Z_\text{int}}{N v_Q} \right)}
+\end{align*}
 \section{Kvantestatistikk}
 \subsection{Gibbsfaktoren}
 Samme utledning som for Boltzmannfaktoren, men denne gangen kan systemet utveksle
@@ -508,6 +602,7 @@ kalles \textbf{Gibbs summen} og summen går over alle mulige tilstander (inklude
 Dersom det er flere typer partikler blir $\mu \dd N$ leddet en sum over $\mu_i \dd N_i$, og Gibbs faktoren blir
 $e^{-[E(s) - \mu_A N_A(s) - \mu_B N_B(s)]/kT}$ for et tilfelle med to typer partikler.
 \subsubsection{Eksempel: Karbonmonoksidforgiftning}
+
 \subsection{Bosoner og Fermioner}
 Gibbsfaktorer sin viktigste anvendelse er i \textbf{kvantestatistikk}. Da er det ofte
 så få mulige tilstander eller så høy tetthet at det er en betydelig sannsynlighet
@@ -555,25 +650,58 @@ Gjennomsnittlig antall partikler i tilstanden er (sett $x = (\epsilon - \mu)/kT$
 Dette kalles \textbf{Bose-Einstein fordelingen}. Begge disse fordelingene reduserer til Boltzmannfordelingen
 i grensen der $\epsilon \gg \mu$.
 \subsection{Degenererte Fermi gasser}
+Betrakter elektroner, men det under gjelder for alle fermioner. Temperatur så lav
+at kravet $V/N \gg v_Q$ er langt unna å være oppfylt. For et elektron ved
+romtemperatur er $v_Q = (h / \sqrt{2\pi m k T})^3 = (4.3 \text{ mm})^3$. I et metall
+er volumet per ledningselektron $(0.2\text{nm})^3$, så temperaturen er for lav til
+at Boltzmannstatistikk kan anvendes. Vi betrakter derfor det motsatte tilfellet,
+og setter i første omgang $T = 0$.
+\subsubsection{Temperatur lik null}
+Fermi-Dirac fordelingen blir en step-function. Alle enpartikkel tilstander med
+energi mindre enn $\mu$ er tatt opp, alle tilstander med større energi er ikke
+tatt opp. Her kalles $\mu$ for \textbf{Fermi energien}, skrevet $\epsilon_F \equiv \mu(T = 0)$.
+Når en elektrongass er så kalt at nesten alle tilstandene under $\epsilon_F$ er tatt opp, mens alle
+over ikke er det, kalles \textbf{degenerert} (ikke relatert til vanlig bruk av ordet i QM).
 
-\section{Konstanter og annet nyttig}
-\subsection{Fysiske konstanter}
+Verdien til $\epsilon_F$ bestemmes av antallet elektroner tilstede. Tom boks,
+legg til et elektron av gangen, hvert nye elektron går da til den laveste
+tilgjengelige tilstanden, til det siste elektronet går i en tilstand rett under
+$\epsilon_F$. Å legge til et elektron må få en energi $\epsilon_F$, siden $\mu = \left( \pdv{U}{N} \right)_{S,V}$
+og $\dd U = \mu$ når $\dd N = 1$.
+
+Approksimasjon: Ingen andre krefter i det hele tatt utenom at de er fanget i en boks med $V = L^3$,
+for ledningselektroner i et metall er dette ikke en god approksimasjon på grunn av
+tiltrekkende krefter fra ioner i krystallen. For elektron i en boks er bølgefunksjonene
+sinusoidale med $\lambda_n = 2L/n$ og $p_n = h/\lambda_n = hn/2L$. I tre dimensjoner
+er det en slik for hver dimensjon, tillatte energier er derfor $\epsilon = \vb p^2 / 2m = \frac{h^2}{8mL^2} (n_x^2 + n_y^2 + n_z^2)$.
+
+\subsubsection{Små temperaturer større enn null}
 \begin{align*}
-  k   &= 1.381 \times 10^{-23} \text{ J/K} = 6.617 \times 10^{-5} \text{ eV/K} \\
-  N_A &= 6.022 \times 10^{23}        \\
-  R   &= 8.315 \text{ J/mol$\cdot$K} \\
-  h   &= 6.626 \times 10^{-34} \text{ J}\cdot\text{s} = 4.136 \times 10^{-15} \text{ eV}\cdot\text{s}\\
+  U = \frac{3}{5} N \epsilon_F + \frac{\pi^2}{4} N \frac{(kT)^2}{\epsilon_F} \implies C_V = \left( \pdv{U}{T} \right) = \frac{\pi^2 N k^2 T}{2\epsilon_F}
 \end{align*}
-\subsection{Konvertering mellom enheter}
+\subsubsection{Tetthet av tilstander}
 
+\subsection{Sort legeme stråling}
+\section{Viktigste formler + annet nyttig}
+\subsection{Summer/integraler}
+\begin{align*}
+  \sum_{k = 0}^{n} r^k &= \frac{1 - r^{n+1}}{1 - r} \quad \text{Sum av endelig geometrisk rekke}\\
+  \sum_{k = 0}^{\infty} r^k &= \frac{1}{1-r} \qquad \text{Sum av uendelig geometrisk rekke (mye brukt for partisjonsfunksjoner/Gibbssummer)} \\
+  \int_{-\infty}^\infty e^{-x^2} \dd x &= \sqrt{\pi}
+\end{align*}
+\subsection{Kombinatorikk}
+1. To operasjoner som kan gjøres på $n$ og $m$ måter kan kombineres på $m \cdot n$ måter.
+2. Antall ordnede utvalg med tilbakelegging av $r$ elementer fra en mengde med $n$ elementer er $n^r$.
+3. Antall ordnede utvalg uten tilbakelegging av $r$ elementer fra en mengde med $n$ elementer er $n(n-1)\hdots (n-r+1) = n!/(n-r)!$.
+4. Antall måter $n$ elementer kan ordnes i rekkefølge på (permuteres) er $n! = (1)(2)\hdots(n-1)(n)$.
+\begin{align*}
+  \binom{n}{r} = \frac{n!}{r!(n-r)!} \quad \text{Antall ikke-ordnede utvalg av $r$ elementer fra en mengde med $n$ elementer} \\
+  \binom{n}{n_1 n_2 \hdots n_r} = \frac{n!}{n_1! n_2! \hdots n_r!} \quad \text{Antall måter $n$ elementer kan deles inn i $r$ delmengder med $n_i$ elementer}
+\end{align*}
 \subsection{Viktigste formler}
 Termodynamikkens tre lover (energibevaring, entropi øker og $S \rightarrow 0$ når $T \rightarrow 0$):
 \begin{align*}
   \Delta E = Q + W \qquad \Delta{Q} = T \delta{S} \qquad S = k \ln{\Omega}, T = 0 \rightarrow \Omega = 1 \rightarrow S = 0
-\end{align*}
-Ideell gass lov
-\begin{align*}
-  PV = NkT = nRT
 \end{align*}
 Termodynamiske identiteter
 \begin{align*}
@@ -587,6 +715,7 @@ Fri energi og partisjonsfunksjon relasjon
   F = -kT \ln{Z} \qquad Z = e^{-F/kT}
 \end{align*}
 \begin{align*}
-  \mean{E} = - \frac{1}{Z} \pdv{Z}{\beta}
+  \mean{U} = - \frac{1}{Z} \pdv{Z}{\beta}
 \end{align*}
+\section{Kort om forsøkene vi hadde! }
 \end{document}
